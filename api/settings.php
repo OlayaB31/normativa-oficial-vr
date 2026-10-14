@@ -1,9 +1,4 @@
 <?php
-/**
- * /api/settings.php
- *   GET   -> ajustes públicos (nombre del servidor, subtítulo, descripción, pie)
- *   POST  {settings:{clave:valor}}  (administrador + CSRF)
- */
 require __DIR__ . '/../config/bootstrap.php';
 
 const KEYS = ['server_name' => 80, 'tagline' => 200, 'description' => 300, 'footer_text' => 300];
