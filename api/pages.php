@@ -1,9 +1,5 @@
 <?php
-/**
- * /api/pages.php
- *   GET ?slug=informacion   -> página publicada
- *   GET                     -> listado de páginas publicadas
- */
+
 require __DIR__ . '/../config/bootstrap.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
