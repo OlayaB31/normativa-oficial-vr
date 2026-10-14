@@ -1,12 +1,4 @@
 <?php
-/**
- * /api/auth.php
- *   GET                       -> estado de sesión + token CSRF + needs_setup
- *   POST {action:'login'}     -> inicia sesión
- *   POST {action:'setup'}     -> crea el primer administrador (solo si no hay usuarios)
- *   POST {action:'logout'}    -> cierra sesión
- *   POST {action:'password'}  -> cambia la contraseña propia
- */
 require __DIR__ . '/../config/bootstrap.php';
 start_session();
 
