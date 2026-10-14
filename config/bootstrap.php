@@ -79,17 +79,117 @@ function run(string $sql, array $params = []): PDOStatement
     return $st;
 }
 
+/**
+ * Almacena las sesiones PHP en MySQL.
+ *
+ * Permite compartir la sesión entre los distintos endpoints
+ * ejecutados por Vercel.
+ */
+final class DatabaseSessionHandler implements SessionHandlerInterface
+{
+    public function open(string $path, string $name): bool
+    {
+        return true;
+    }
+
+    public function close(): bool
+    {
+        return true;
+    }
+
+    public function read(string $id): string|false
+    {
+        $row = run(
+            'SELECT session_data
+               FROM normativa_sessions
+              WHERE session_id = ?
+                AND expires_at > ?',
+            [$id, time()]
+        )->fetch();
+
+        return $row ? (string) $row['session_data'] : '';
+    }
+
+    public function write(string $id, string $data): bool
+    {
+        $lifetime = max(
+            1,
+            (int) ini_get('session.gc_maxlifetime')
+        );
+
+        $expiresAt = time() + $lifetime;
+
+        run(
+            'INSERT INTO normativa_sessions
+                (session_id, session_data, expires_at)
+             VALUES (?, ?, ?)
+             ON DUPLICATE KEY UPDATE
+                session_data = VALUES(session_data),
+                expires_at = VALUES(expires_at)',
+            [$id, $data, $expiresAt]
+        );
+
+        return true;
+    }
+
+    public function destroy(string $id): bool
+    {
+        run(
+            'DELETE FROM normativa_sessions WHERE session_id = ?',
+            [$id]
+        );
+
+        return true;
+    }
+
+    public function gc(int $max_lifetime): int|false
+    {
+        $statement = run(
+            'DELETE FROM normativa_sessions WHERE expires_at <= ?',
+            [time()]
+        );
+
+        return $statement->rowCount();
+    }
+}
+
+
 function start_session(): void
 {
     if (session_status() === PHP_SESSION_ACTIVE) {
         return;
     }
-    $https = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
-        || ($_SERVER['HTTP_X_FORWARDED_PROTO'] ?? '') === 'https';
+
+    // La aplicación permite sesiones de hasta cuatro horas
+    // de inactividad; current_user() comprueba esa caducidad.
+    ini_set('session.gc_maxlifetime', '14400');
     ini_set('session.use_strict_mode', '1');
+
+    $https = (
+        !empty($_SERVER['HTTPS'])
+        && $_SERVER['HTTPS'] !== 'off'
+    ) || (
+        ($_SERVER['HTTP_X_FORWARDED_PROTO'] ?? '') === 'https'
+    );
+
     session_name('normativa_sid');
-    session_set_cookie_params(['lifetime' => 0, 'path' => '/', 'secure' => $https, 'httponly' => true, 'samesite' => 'Lax']);
+
+    session_set_cookie_params([
+        'lifetime' => 0,
+        'path' => '/',
+        'secure' => $https,
+        'httponly' => true,
+        'samesite' => 'Lax',
+    ]);
+
+    // Registrar el almacenamiento compartido antes de abrir la sesión.
+    session_set_save_handler(
+        new DatabaseSessionHandler(),
+        true
+    );
+
     session_start();
+
     if (empty($_SESSION['csrf'])) {
         $_SESSION['csrf'] = bin2hex(random_bytes(32));
     }
@@ -139,15 +239,13 @@ function require_auth(string $role = 'editor'): array
     return $u;
 }
 
-/**
- * Validación CSRF desactivada.
- *
- * Se conserva la función para evitar errores en los endpoints
- * que todavía llaman a require_csrf().
- */
 function require_csrf(): void
 {
-    return;
+    start_session();
+    $sent = (string) ($_SERVER['HTTP_X_CSRF_TOKEN'] ?? '');
+    if ($sent === '' || !hash_equals((string) ($_SESSION['csrf'] ?? ''), $sent)) {
+        fail('Token de seguridad no válido. Recarga la página e inténtalo de nuevo.', 403);
+    }
 }
 
 
