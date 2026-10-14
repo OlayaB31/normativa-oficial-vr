@@ -1,9 +1,4 @@
 <?php
-/**
- * /api/sections.php  (apartados, títulos, capítulos y secciones, con profundidad ilimitada)
- *   GET ?admin=1                                   -> listado plano (requiere sesión)
- *   POST {action: create|update|delete|move}       (administrador + CSRF)
- */
 require __DIR__ . '/../config/bootstrap.php';
 
 const KINDS = ['apartado', 'titulo', 'capitulo', 'seccion'];
@@ -28,7 +23,6 @@ require_csrf();
 $b = body();
 $action = (string) ($b['action'] ?? '');
 
-/** Valida la ubicación elegida y devuelve [category_id, parent_id]. */
 function resolve_place(array $b, ?int $selfId): array
 {
     $cat = int_in($b['category_id'] ?? null);
