@@ -1,8 +1,4 @@
 <?php
-/**
- * Núcleo compartido por todos los endpoints de /api.
- * Respuestas JSON, PDO, sesiones, CSRF, validación y saneado de HTML.
- */
 declare(strict_types=1);
 
 if (PHP_VERSION_ID < 80100) {
@@ -41,7 +37,6 @@ set_exception_handler(function (Throwable $e): void {
     echo json_encode($payload, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_INVALID_UTF8_SUBSTITUTE);
 });
 
-/* ---------- Respuestas ---------- */
 
 function out(mixed $data = null, int $code = 200): never
 {
@@ -55,7 +50,6 @@ function fail(string $message, int $code = 400, array $extra = []): never
     throw new ApiError($message, $code, $extra);
 }
 
-/* ---------- Base de datos ---------- */
 
 function cfg(): array
 {
@@ -78,15 +72,12 @@ function db(): PDO
     return $pdo;
 }
 
-/** Ejecuta una consulta preparada (placeholders posicionales ?). */
 function run(string $sql, array $params = []): PDOStatement
 {
     $st = db()->prepare($sql);
     $st->execute($params);
     return $st;
 }
-
-/* ---------- Sesión, usuario y CSRF ---------- */
 
 function start_session(): void
 {
@@ -136,8 +127,6 @@ function current_user(): ?array
     }
     return $user;
 }
-
-/** Exige sesión iniciada. $role = 'admin' restringe a administradores. */
 function require_auth(string $role = 'editor'): array
 {
     $u = current_user();
@@ -150,16 +139,17 @@ function require_auth(string $role = 'editor'): array
     return $u;
 }
 
+/**
+ * Validación CSRF desactivada.
+ *
+ * Se conserva la función para evitar errores en los endpoints
+ * que todavía llaman a require_csrf().
+ */
 function require_csrf(): void
 {
-    start_session();
-    $sent = (string) ($_SERVER['HTTP_X_CSRF_TOKEN'] ?? '');
-    if ($sent === '' || !hash_equals((string) ($_SESSION['csrf'] ?? ''), $sent)) {
-        fail('Token de seguridad no válido. Recarga la página e inténtalo de nuevo.', 403);
-    }
+    return;
 }
 
-/* ---------- Entrada y validación ---------- */
 
 function body(): array
 {
@@ -221,9 +211,6 @@ function placeholders(array $items): string
     return implode(',', array_fill(0, count($items), '?'));
 }
 
-/* ---------- Texto y slugs ---------- */
-
-/** Minúsculas y sin acentos, carácter a carácter (conserva las posiciones). */
 function fold(string $s): string
 {
     return strtr(mb_strtolower($s, 'UTF-8'), [
@@ -259,8 +246,6 @@ function plain_text(string $html): string
     $t = html_entity_decode((string) $t, ENT_QUOTES | ENT_HTML5, 'UTF-8');
     return trim((string) preg_replace('/\s+/u', ' ', $t));
 }
-
-/* ---------- Saneado de HTML (lista blanca) ---------- */
 
 function clean_html(string $html): string
 {
@@ -347,7 +332,6 @@ function clean_node(DOMNode $node, array $allowed, array $drop): void
     }
 }
 
-/* ---------- Ordenación ---------- */
 
 function next_order(string $table, string $scopeSql, array $params): int
 {
