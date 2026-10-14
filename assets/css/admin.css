@@ -546,39 +546,38 @@
 
 .login-side {
   position: relative;
-  overflow: hidden;
   isolation: isolate;
-
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
-  padding: clamp(1.75rem, 4vw, 3rem);
+  min-width: 0;
+  background: #101923 !important;
   color: #fff;
-
-
-  background: #101923;
 }
 
 
 .login-side .login-video {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 0 !important;
+  display: block !important;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
   pointer-events: none;
 }
 
+
 .login-side .login-video video {
-  position: absolute;
-  inset: 0;
-
-  display: block;
-  width: 100%;
-  height: 100%;
-
-  object-fit: cover;
-  object-position: center;
+  position: absolute !important;
+  inset: 0 !important;
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  object-fit: cover !important;
+  object-position: center center;
 }
 
 
@@ -588,15 +587,12 @@
   inset: 0;
   z-index: 1;
   pointer-events: none;
-
-  background:
-    linear-gradient(
-      180deg,
-      rgba(8, 15, 27, .38) 0%,
-      rgba(8, 15, 27, .58) 48%,
-      rgba(8, 15, 27, .82) 100%
-    ),
-    url("../img/hero-lines.svg") center / cover no-repeat;
+  background: linear-gradient(
+    180deg,
+    rgba(8, 15, 27, .25) 0%,
+    rgba(8, 15, 27, .45) 50%,
+    rgba(8, 15, 27, .72) 100%
+  );
 }
 
 
@@ -606,41 +602,17 @@
 }
 
 
-.login-brand {
-  display: flex;
-  align-items: center;
-  gap: .65rem;
+.login-side .login-brand,
+.login-side .login-copy {
+  background-color: transparent;
+}
 
+
+.login-side .login-brand,
+.login-side .login-brand strong,
+.login-side .login-copy h1,
+.login-side .login-copy p {
   color: #fff;
-  font: 500 1rem var(--font-display);
-}
-
-.login-copy {
-  display: grid;
-  gap: 1rem;
-  justify-items: start;
-}
-
-.login-copy .eyebrow {
-  background: rgba(5, 6, 27, .42);
-  color: #fff;
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .22);
-}
-
-.login-side h1 {
-  margin: 0;
-  font-size: clamp(2.5rem, 5vw, 4rem);
-  line-height: 1.08;
-  letter-spacing: -.015em;
-  color: #fff;
-}
-
-.login-side p:not(.eyebrow) {
-  margin: 0;
-  max-width: 30ch;
-  font-size: 1.0625rem;
-  line-height: 1.7;
-  color: rgba(255, 255, 255, .86);
 }
 
 
@@ -724,12 +696,5 @@
 @media (max-width: 960px) {
   .admin-main {
     padding-top: 11.5rem;
-  }
-}
-
-
-@media (prefers-reduced-motion: reduce) {
-  .login-side .login-video video {
-    display: none;
   }
 }
