@@ -13,5 +13,5 @@ return [
     'password' => getenv('DB_PASS') ?: 'WFJFI^vb7lXxi!Kjd7Xq4h9o',
 
     // Solo para depurar en local: añade el mensaje técnico a los errores 500.
-    'debug'    => true,
+    'debug'    => false,
 ];
