@@ -1,10 +1,4 @@
 <?php
-/**
- * /api/categories.php
- *   GET ?tree=1          -> árbol público (solo títulos): categorías > apartados > artículos
- *   GET ?admin=1         -> listado completo para el panel (requiere sesión)
- *   POST {action: create|update|delete|move}  (administrador + CSRF)
- */
 require __DIR__ . '/../config/bootstrap.php';
 
 function count_articles(array $node): int
@@ -31,7 +25,6 @@ function build_tree(): array
         $key = $a['section_id'] === null ? 'c' . $a['category_id'] : 's' . $a['section_id'];
         $artBy[$key][] = ['id' => (int) $a['id'], 'number' => $a['number'], 'title' => $a['title'], 'slug' => $a['slug'], 'summary' => $a['summary']];
     }
-    // Solo se alcanzan los apartados publicados cuya cadena de padres también está publicada.
     $build = function (string $key) use (&$build, $secBy, $artBy): array {
         $node = ['articles' => $artBy[$key] ?? [], 'sections' => []];
         foreach ($secBy[$key] ?? [] as $s) {
