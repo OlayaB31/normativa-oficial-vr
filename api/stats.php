@@ -1,10 +1,6 @@
 <?php
 declare(strict_types=1);
 
-/**
- * Estadísticas del panel de administración.
- */
-
 require __DIR__ . '/../config/bootstrap.php';
 
 if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'GET') {
