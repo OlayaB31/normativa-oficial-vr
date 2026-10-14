@@ -1,21 +1,8 @@
 <?php
-/**
- * /api/articles.php
- * Público:
- *   GET ?slug=x[&preview=1]   -> artículo publicado (preview: cualquier estado, solo con sesión)
- *   GET ?recent=1[&limit=8]   -> últimos artículos actualizados
- * Panel (sesión):
- *   GET ?admin=1&q=&status=&category_id=&page=   -> listado paginado
- *   GET ?admin=1&id=N                            -> artículo completo (para editar)
- *   GET ?admin=1&history=N                       -> historial de versiones
- *   POST {action: create|update|duplicate|move|set_status|restore|delete|sanitize}
- */
 require __DIR__ . '/../config/bootstrap.php';
 
 const STATUSES = ['draft', 'published', 'archived'];
 const STATUS_LABEL = ['draft' => 'Borrador', 'published' => 'Publicado', 'archived' => 'Archivado'];
-
-/* ---------- utilidades ---------- */
 
 function tags_in(array $b): array
 {
@@ -87,8 +74,6 @@ function find_article(mixed $id): array
     }
     return $a;
 }
-
-/* ---------- GET ---------- */
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     if (isset($_GET['admin'])) {
@@ -198,8 +183,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     fail('Método no permitido', 405);
 }
-
-/* ---------- POST (panel) ---------- */
 
 start_session();
 $user = require_auth();
@@ -315,7 +298,7 @@ switch ($action) {
         run('DELETE FROM articles WHERE id = ?', [$a['id']]);
         out(['deleted' => (int) $a['id']]);
 
-    case 'sanitize': // la previsualización usa exactamente el mismo saneado que el guardado
+    case 'sanitize': 
         out(['html' => clean_html(is_string($b['html'] ?? null) ? $b['html'] : '')]);
 
     default:
