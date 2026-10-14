@@ -1,8 +1,3 @@
-/* ==========================================================================
-   Vistas públicas: portada, explorador y lector, buscador, información
-   ========================================================================== */
-
-/* ---------- Portada: zona oscura ---------- */
 .hero {
   position: relative;
   overflow: hidden;
@@ -125,8 +120,6 @@
 .stat-t { display: block; font: 500 .875rem/1.4 var(--font-ui); color: #fff; }
 .stat-d { display: block; font-size: .875rem; line-height: 1.4; color: rgba(255, 255, 255, .7); font-variant-numeric: tabular-nums; }
 
-/* ---------- Portada: video de fondo ---------- */
-/* El video, la sombra y el contenido son hijos directos de .hero en el HTML. */
 .hero > .hero-video {
   display: block;
   position: absolute;
@@ -149,13 +142,11 @@
     linear-gradient(90deg, rgba(15, 7, 29, .48) 0%, rgba(15, 7, 29, .2) 50%, rgba(15, 7, 29, .48) 100%);
 }
 
-/* Mantiene la portada y sus controles por encima del video y de la sombra. */
 .hero > .wrap {
   position: relative;
   z-index: 2;
 }
 
-/* En caso de error o bloqueo del video, .hero conserva el fondo degradado. */
 @media (max-width: 600px) {
   .hero > .hero-video { object-position: center; }
   .hero > .hero-video-shade {
@@ -165,7 +156,6 @@
   }
 }
 
-/* ---------- Portada: zona clara ---------- */
 .section { padding-top: 5rem; }
 .section-head { display: grid; justify-items: center; gap: 1rem; margin: 0 auto 2.5rem; text-align: center; max-width: 40rem; }
 .section-head h2 { margin: 0; font-size: clamp(2rem, 4.4vw, 3rem); line-height: 1.14; letter-spacing: -.01em; }
@@ -196,7 +186,6 @@
 .tips li { display: flex; gap: 1rem; align-items: center; padding: .8rem 0; border-top: 1px solid var(--line); }
 .tips .keys { flex: none; display: flex; gap: .25rem; min-width: 4.5rem; }
 
-/* ---------- Lector: índice | documento | ficha ---------- */
 .reader { display: grid; grid-template-columns: 15rem minmax(0, 1fr) 13.5rem; grid-template-areas: "index main rail"; gap: 2.5rem; padding-bottom: 2rem; align-items: start; }
 .index { grid-area: index; position: sticky; top: 5.5rem; max-height: calc(100vh - 6.5rem); overflow-y: auto; padding-right: .5rem; font-size: .875rem; scrollbar-width: thin; }
 .reader-main { grid-area: main; min-width: 0; }
@@ -209,7 +198,7 @@
 .crumbs a:hover { color: var(--ink); text-decoration: underline; }
 .crumbs [aria-current] { color: var(--ink); font-weight: 500; }
 
-/* Índice lateral */
+
 .ix-title { margin: 0 0 .75rem; font: 500 .6875rem/1.45 var(--font-mono); letter-spacing: .03em; text-transform: uppercase; color: var(--muted); }
 .ix-list, .ix-sub ul { list-style: none; margin: 0; padding: 0; }
 .ix-cat { margin: 0 0 .15rem; }
@@ -232,7 +221,7 @@
 .ix-sub li > .ix-link, .ix-sub li > .ix-row > .ix-link { font-size: .8125rem; }
 .ix-sub li > .ix-link { margin-left: .2rem; }
 
-/* Documento */
+
 .view { animation: fade .22s ease-out; }
 @keyframes fade { from { opacity: 0; } }
 .doc-head, .view-head { margin-bottom: 2.25rem; }
@@ -269,7 +258,6 @@
 .pager .prev { grid-column: 1; }
 .pager .up { grid-column: 1 / -1; text-align: center; border-style: dashed; color: var(--muted); font-size: .875rem; }
 
-/* Esquema de una categoría o apartado */
 .outline { list-style: none; margin: 0; padding: 0; }
 .outline .outline { margin: .1rem 0 .5rem 1.1rem; padding-left: 1rem; border-left: 1px solid var(--line); }
 .outline li { margin: 0; }
@@ -285,7 +273,6 @@
 .outline .ol-sum { margin: -.3rem 0 .75rem 3.85rem; color: var(--muted); font-size: .875rem; line-height: 1.6; max-width: 58ch; }
 .view-head .docmeta { margin-top: 1.25rem; }
 
-/* Ficha lateral */
 .rail h2 { margin: 0 0 .7rem; font: 500 .6875rem/1.45 var(--font-mono); letter-spacing: .03em; text-transform: uppercase; color: var(--muted); }
 .facts { display: grid; grid-template-columns: auto 1fr; gap: .45rem .9rem; margin: 0 0 1.1rem; font-size: .8125rem; }
 .facts dt { color: var(--muted); }
@@ -297,7 +284,6 @@
 .toc a.on { border-left-color: var(--accent); color: var(--ink); font-weight: 500; }
 .toc .l4 a { padding-left: 1.6rem; }
 
-/* ---------- Buscador ---------- */
 .search-page { max-width: 54rem; margin-inline: auto; }
 .search-page h1 { margin: 1rem 0 1.5rem; font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.015em; }
 .search-form { display: flex; gap: .5rem; align-items: center; padding: 6px; border: 1px solid var(--line-strong); border-radius: var(--r-pill); background: var(--surface); transition: border-color .15s, box-shadow .15s; }
@@ -323,11 +309,9 @@
 mark { background: var(--mark); color: inherit; padding: 0; border-radius: 2px; }
 .pagination { display: flex; gap: .75rem; align-items: center; justify-content: center; margin-top: 2rem; color: var(--muted); font-size: .875rem; }
 
-/* ---------- Página de información ---------- */
 .info-page { max-width: 46rem; margin-inline: auto; }
 .info-page h1 { margin: 1rem 0 1.75rem; font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.015em; }
 
-/* ---------- Adaptación ---------- */
 @media (max-width: 1180px) {
   .reader { grid-template-columns: 15rem minmax(0, 1fr); grid-template-areas: "index main" "index rail"; }
   .rail { position: static; max-width: 44rem; padding-top: 1.75rem; margin-top: 2.25rem; border-top: 1px solid var(--line); }
@@ -360,7 +344,6 @@ mark { background: var(--mark); color: inherit; padding: 0; border-radius: 2px; 
   .cat-card, .panel { padding: 22px; }
 }
 
-/* ---------- Impresión ---------- */
 @media print {
   :root, :root[data-theme] { --bg: #fff; --surface: #fff; --wash: #f2f2f2; --ink: #000; --ink-2: #222; --muted: #444; --line: #bbb; --line-strong: #888; --tint: #eee; --tint-ink: #000; --link: #000; }
   .masthead, .footer, .index, .index-bar, .rail, .pager, .crumbs, .toast-box, .skip { display: none !important; }
