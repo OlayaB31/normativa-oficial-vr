@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Buscar</title>
+<meta name="description" content="Busca en títulos, artículos, contenido, categorías y etiquetas de la normativa oficial.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Buscar">
+<meta property="og:description" content="Busca en títulos, artículos, contenido, categorías y etiquetas de la normativa oficial.">
+<meta property="og:locale" content="es_ES">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="assets/img/logo-vr.gif" type="image/gif">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&amp;family=Inter+Tight:wght@400;500&amp;family=Inter:wght@400;500;600;700&amp;display=swap">
+<link rel="stylesheet" href="assets/css/main.css">
+<link rel="stylesheet" href="assets/css/normativa.css">
+<script src="assets/js/theme.js"></script>
+</head>
+<body>
+<a class="skip" href="#content">Saltar al contenido</a>
+<header class="masthead" data-masthead data-active="buscar"></header>
+
+<main id="content" class="wrap">
+  <div class="search-page">
+    <p class="eyebrow">Buscador</p>
+    <h1>Buscar en la normativa</h1>
+    <form class="search-form" id="search-form" role="search">
+      <label class="sr-only" for="q">Buscar normativa</label>
+      <input id="q" type="search" name="q" placeholder="Buscar normativa…" autocomplete="off">
+      <button class="btn btn-primary btn-arrow" type="submit">Buscar</button>
+    </form>
+    <p class="search-meta" id="search-meta" aria-live="polite"></p>
+    <div class="groups" id="search-groups"></div>
+    <ol class="results" id="results"></ol>
+    <div class="pagination" id="search-pager"></div>
+  </div>
+</main>
+
+<footer class="footer" data-footer></footer>
+<script src="assets/js/app.js"></script>
+<script src="assets/js/search.js"></script>
+</body>
+</html>

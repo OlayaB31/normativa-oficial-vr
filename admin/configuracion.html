@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light" data-base="../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Configuración - Administración</title>
+<link rel="icon" href="../assets/img/logo-vr.gif" type="image/gif">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&amp;family=Inter+Tight:wght@400;500&amp;family=Inter:wght@400;500;600;700&amp;display=swap">
+<link rel="stylesheet" href="../assets/css/main.css">
+<link rel="stylesheet" href="../assets/css/normativa.css">
+<link rel="stylesheet" href="../assets/css/admin.css">
+<script src="../assets/js/theme.js"></script>
+</head>
+<body>
+<header data-adminbar></header>
+<main class="admin-main admin-narrow">
+  <div class="page-head"><div><h1>Configuración</h1></div></div>
+  <form id="settings-form" novalidate>
+    <h2 class="sec-h">Datos del servidor</h2>
+    <label class="fld" for="server_name">Nombre del servidor<input id="server_name" name="server_name" type="text" maxlength="80"></label>
+    <label class="fld" for="tagline">Subtítulo<input id="tagline" name="tagline" type="text" maxlength="200"></label>
+    <label class="fld" for="description">Descripción para buscadores<textarea id="description" name="description" maxlength="300"></textarea></label>
+    <label class="fld" for="footer_text">Texto del pie de página<textarea id="footer_text" name="footer_text" maxlength="300"></textarea></label>
+    <button class="btn btn-primary" type="submit">Guardar configuración</button>
+  </form>
+  <form id="password-form" class="form-block" novalidate>
+    <h2 class="sec-h">Cambiar mi contraseña</h2>
+    <label class="fld" for="current">Contraseña actual<input id="current" name="current" type="password" autocomplete="current-password"></label>
+    <label class="fld" for="new">Contraseña nueva<input id="new" name="new" type="password" autocomplete="new-password"><small>Mínimo 10 caracteres.</small></label>
+    <label class="fld" for="repeat">Repite la contraseña nueva<input id="repeat" name="repeat" type="password" autocomplete="new-password"></label>
+    <button class="btn" type="submit">Actualizar contraseña</button>
+  </form>
+</main>
+<script src="../assets/js/app.js"></script>
+<script src="../assets/js/admin.js"></script>
+<script src="../assets/js/admin-settings.js"></script>
+</body>
+</html>

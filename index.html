@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Normativa Oficial Vida Rol</title>
+<meta name="description" content="Reglamento y disposiciones de Vida Rol: normas generales, roleplay, conductas sancionables y más.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Normativa Oficial Vida Rol">
+<meta property="og:description" content="Reglamento y disposiciones de Vida Rol: normas generales, roleplay, conductas sancionables y más.">
+<meta property="og:locale" content="es_ES">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="assets/img/logo-vr.gif" type="image/gif">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&amp;family=Inter+Tight:wght@400;500&amp;family=Inter:wght@400;500;600;700&amp;display=swap">
+<link rel="stylesheet" href="assets/css/main.css">
+<link rel="stylesheet" href="assets/css/normativa.css">
+<script src="assets/js/theme.js"></script>
+</head>
+<body>
+<a class="skip" href="#content">Saltar al contenido</a>
+<header class="masthead" data-masthead data-active="inicio"></header>
+
+<main id="content">
+  <section class="hero">
+    <video class="hero-video" autoplay muted loop playsinline preload="auto" aria-hidden="true" tabindex="-1">
+      <source src="assets/video/fondo.mp4" type="video/mp4">
+    </video>
+    <div class="hero-video-shade" aria-hidden="true"></div>
+
+    <div class="wrap">
+      <p class="eyebrow" id="edition">Edición vigente</p>
+      <h1>Normativa Oficial</h1>
+      <p class="sub" data-tagline>Reglamento y disposiciones de Vida Rol.</p>
+
+      <form class="hero-search" role="search" action="buscar.html">
+        <label class="sr-only" for="hero-q">Buscar normativa</label>
+        <input id="hero-q" type="search" name="q" placeholder="Busca una norma: MG, armas, sanciones…" autocomplete="off">
+        <button class="btn btn-primary btn-arrow" type="submit">Buscar</button>
+      </form>
+
+      <div class="hero-links">
+        <a class="btn btn-light" href="normativa.html">Ver el índice completo</a>
+      </div>
+
+      <ul class="stat-row" id="hero-stats" hidden></ul>
+    </div>
+  </section>
+
+  <section class="wrap section" aria-labelledby="idx-h">
+    <header class="section-head">
+      <p class="eyebrow">Índice general</p>
+      <h2 id="idx-h">Normativa por categorías</h2>
+    </header>
+    <ol class="cat-grid" id="home-index"><li class="loading">Cargando…</li></ol>
+
+    <div class="panel-grid">
+      <section class="panel" aria-labelledby="recent-h">
+        <h2 id="recent-h">Últimas modificaciones</h2>
+        <ul class="ledger" id="home-recent"></ul>
+      </section>
+      <section class="panel" aria-labelledby="keys-h">
+        <h2 id="keys-h">Atajos de teclado</h2>
+        <ul class="tips">
+          <li><span class="keys"><kbd>/</kbd></span>Buscar en toda la normativa</li>
+          <li><span class="keys"><kbd>n</kbd><kbd>p</kbd></span>Artículo siguiente y anterior</li>
+          <li><span class="keys"><kbd>i</kbd></span>Mostrar u ocultar el índice</li>
+          <li><span class="keys"><kbd>t</kbd></span>Cambiar entre modo claro y oscuro</li>
+        </ul>
+      </section>
+    </div>
+  </section>
+</main>
+
+<footer class="footer" data-footer></footer>
+<script src="assets/js/app.js"></script>
+<script src="assets/js/home.js"></script>
+</body>
+</html>
