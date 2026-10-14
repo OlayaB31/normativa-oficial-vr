@@ -1,7 +1,3 @@
-/* ==========================================================================
-   Panel de administración. Reutiliza los tokens de main.css.
-   ========================================================================== */
-
 .admin-main { width: 100%; max-width: var(--page); margin-inline: auto; padding-inline: var(--gutter); padding-bottom: 3rem; }
 .admin-narrow { max-width: 46rem; }
 .form-block { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--line); }
@@ -13,7 +9,7 @@
 .back:hover { color: var(--ink); text-decoration: underline; }
 .sec-h { margin: 0 0 1rem; font-size: 1.5rem; line-height: 1.33; }
 
-/* Resumen */
+
 .figures { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: 16px; margin: 0 0 1.75rem; }
 .figures > div { padding: 24px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-card); }
 .figures dt { color: var(--muted); font: 500 .6875rem/1.45 var(--font-mono); letter-spacing: .03em; text-transform: uppercase; }
@@ -22,7 +18,7 @@
 .figures small { display: block; margin-top: .6rem; color: var(--muted); font-size: .8125rem; }
 .shortcuts { display: flex; flex-wrap: wrap; gap: .5rem; margin: 0 0 3rem; }
 
-/* Tablas */
+
 .table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--r-card); background: var(--surface); }
 .tbl { width: 100%; border-collapse: collapse; font-size: .875rem; }
 .tbl th { text-align: left; padding: .7rem 1rem; color: var(--muted); font: 500 .6875rem/1.45 var(--font-mono); letter-spacing: .03em; text-transform: uppercase; background: var(--wash); border-bottom: 1px solid var(--line); white-space: nowrap; }
@@ -42,7 +38,7 @@
 .filters select { width: auto; }
 .pagination { display: flex; gap: .75rem; align-items: center; justify-content: center; margin-top: 1.5rem; color: var(--muted); font-size: .875rem; }
 
-/* Estructura */
+
 .struct, .struct ul { list-style: none; margin: 0; padding: 0; }
 .struct > li { margin-bottom: 12px; padding: 6px 20px 8px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-card); }
 .struct ul { margin: 0 0 .25rem 1rem; padding-left: 1rem; border-left: 1px solid var(--line); }
@@ -55,7 +51,7 @@
 .srow .ctl { display: flex; flex-wrap: wrap; gap: .3rem; margin-left: auto; }
 .badge { padding: 1px 10px; border-radius: var(--r-pill); background: var(--wash); color: var(--ink-2); font: 500 .6875rem/1.7 var(--font-mono); letter-spacing: .03em; text-transform: uppercase; border: 1px solid var(--line-strong); }
 
-/* Diálogos */
+
 .modal { width: min(94vw, 34rem); padding: 1.75rem; border: 1px solid var(--line); border-radius: var(--r-card-lg); background: var(--surface); color: var(--ink); box-shadow: var(--shadow-pop); }
 .modal::backdrop { background: rgba(5, 6, 27, .55); backdrop-filter: blur(2px); }
 .modal h2 { margin: 0 0 1rem; font-size: 1.5rem; line-height: 1.33; }
@@ -63,7 +59,7 @@
 .modal-actions { display: flex; justify-content: flex-end; gap: .5rem; margin-top: 1.25rem; }
 .form-error { color: var(--danger); font-weight: 500; font-size: .875rem; margin: 0 0 .5rem; }
 
-/* Editor */
+
 .sticky-actions { position: sticky; top: 4.75rem; z-index: 20; margin: 0 calc(var(--gutter) * -1) 1.5rem; padding: .85rem var(--gutter); background: color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
 .sticky-actions h1 { font-size: 1.5rem; }
 .sticky-actions .back { margin-bottom: .1rem; }
@@ -93,7 +89,7 @@
 .history .row { display: flex; justify-content: space-between; align-items: center; gap: .5rem; }
 .history small { color: var(--muted); }
 
-/* Acceso */
+
 .login { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); min-height: 100vh; }
 .login-side {
   position: relative; overflow: hidden; isolation: isolate; display: flex; flex-direction: column; justify-content: space-between;
