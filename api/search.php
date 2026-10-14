@@ -1,9 +1,4 @@
 <?php
-/**
- * /api/search.php?q=texto[&page=1][&limit=15]
- * Busca en títulos, número, descripción, contenido, categorías, apartados y etiquetas
- * (solo artículos publicados). La colación utf8mb4_unicode_ci ignora mayúsculas y acentos.
- */
 require __DIR__ . '/../config/bootstrap.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
