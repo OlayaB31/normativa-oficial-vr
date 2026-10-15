@@ -10,6 +10,7 @@
   const STATE = { published: 'Vigente', draft: 'Borrador', archived: 'Archivado' };
   const st = { tree: null, map: { c: {}, s: {}, a: {} }, parent: new Map(), flat: [], seq: 0, spy: null };
 
+  /* ---------- Árbol: índices, numeración y orden de lectura ---------- */
   function register(node, type, parent) {
     node.type = type;
     st.map[type][node.slug] = node;
@@ -33,6 +34,7 @@
   const pathOf = (n) => { const p = []; for (let x = st.parent.get(n); x; x = st.parent.get(x)) p.unshift(x); return p; };
   const kindOf = (n) => (n.type === 'c' ? 'Categoría' : KIND[n.kind] || 'Apartado');
 
+  /* ---------- Índice lateral ---------- */
   function articleLink(a) {
     return `<li data-key="a:${esc(a.slug)}"><a class="ix-link" href="${href(a)}">${a.number ? `<span class="ix-num">${esc(a.number)}</span>` : ''}<span>${esc(a.title)}</span></a></li>`;
   }
@@ -71,6 +73,7 @@
     if (link && getComputedStyle(idx).position === 'sticky') idx.scrollTop = Math.max(0, link.offsetTop - idx.clientHeight / 3);
   }
 
+  /* ---------- Piezas comunes ---------- */
   function crumbs(items) {
     const all = [{ name: 'Inicio', href: 'index.html' }, { name: 'Normativa', href: 'normativa.html' }, ...items];
     return `<nav class="crumbs" aria-label="Ruta de navegación"><ol>${all.map((c, i) => i === all.length - 1
@@ -95,21 +98,21 @@
   }
   const cleanUrl = () => { const u = new URL(location.href); u.searchParams.delete('preview'); return u.href; };
 
-  function railActions() {
-    return `<div class="rail-actions" aria-label="Herramientas del documento">
-    </div>`;
-  }
-  rail.addEventListener('click', (e) => {
-    const action = e.target.closest('[data-act]')?.dataset.act;
-    if (action === 'copy') App.copy(cleanUrl());
-    if (action === 'print') window.print();
-  });
+  // function railActions() {
+  //   return `<div class="rail-actions"><button type="button" class="btn btn-sm" data-act="copy">Copiar enlace</button><button type="button" class="btn btn-sm" data-act="print">Imprimir</button></div>`;
+  // }
+  // rail.addEventListener('click', (e) => {
+  //   const a = e.target.closest('[data-act]')?.dataset.act;
+  //   if (a === 'copy') App.copy(cleanUrl());
+  //   if (a === 'print') window.print();
+  // });
 
+  /* ---------- Vistas ---------- */
   function viewOverview() {
     setMeta('Normativa', 'Índice completo de la normativa oficial del servidor.');
     markCurrent(null);
     const cats = st.tree.categories;
-    main.innerHTML = `${crumbs([])}<div class="view"><header class="view-head"><p class="section-kicker">VIDA ROL <span>/</span> DOCUMENTACIÓN OFICIAL</p><h1>Normativa</h1>
+    main.innerHTML = `${crumbs([])}<div class="view"><header class="view-head"><h1>Normativa</h1>
       <p class="lede">Elige una categoría o recorre el índice completo. Cada artículo indica su estado y su última actualización.</p></header>
       ${cats.length ? outline(cats, 2) : '<p class="empty">Todavía no hay normativa publicada.</p>'}</div>`;
     rail.innerHTML = `<h2>Documento</h2><dl class="facts"><dt>Categorías</dt><dd>${cats.length}</dd><dt>Artículos</dt><dd>${st.tree.total_articles}</dd><dt>Actualizada</dt><dd>${fmtDate(st.tree.last_update)}</dd></dl>${railActions()}`;
@@ -196,6 +199,7 @@
     rail.innerHTML = '';
   }
 
+  /* ---------- Enrutado ---------- */
   async function render() {
     const my = ++st.seq;
     const p = new URLSearchParams(location.search);
