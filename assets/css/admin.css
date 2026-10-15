@@ -221,10 +221,6 @@
   font-size: .875rem;
 }
 
-/* ==========================================================================
-   Estructura
-   ========================================================================== */
-
 .struct,
 .struct ul {
   list-style: none;
@@ -298,10 +294,6 @@
   border: 1px solid var(--line-strong);
 }
 
-/* ==========================================================================
-   Diálogos
-   ========================================================================== */
-
 .modal {
   width: min(94vw, 34rem);
   padding: 1.75rem;
@@ -342,9 +334,6 @@
   margin: 0 0 .5rem;
 }
 
-/* ==========================================================================
-   Editor
-   ========================================================================== */
 
 .sticky-actions {
   position: sticky;
@@ -536,14 +525,11 @@
   color: var(--muted);
 }
 
-
 .login {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   min-height: 100vh;
 }
-
-
 
 .login-side {
   position: relative;
@@ -557,7 +543,6 @@
   color: #fff;
 }
 
-
 .login-side .login-video {
   position: absolute !important;
   inset: 0 !important;
@@ -569,7 +554,6 @@
   pointer-events: none;
 }
 
-
 .login-side .login-video video {
   position: absolute !important;
   inset: 0 !important;
@@ -580,7 +564,6 @@
   object-fit: cover !important;
   object-position: center center;
 }
-
 
 .login-side::before {
   content: "";
@@ -596,18 +579,15 @@
   );
 }
 
-
 .login-side > :not(.login-video) {
   position: relative;
   z-index: 2;
 }
 
-
 .login-side .login-brand,
 .login-side .login-copy {
   background-color: transparent;
 }
-
 
 .login-side .login-brand,
 .login-side .login-brand strong,
@@ -651,7 +631,6 @@
   z-index: 2;
 }
 
-
 .login-form::before {
   content: "";
   position: absolute;
@@ -671,7 +650,6 @@
 
   animation: lf-frame 1.1s var(--lf-ease) .1s both;
 }
-
 
 .login-form::after {
   content: "";
@@ -694,7 +672,6 @@
   animation: lf-scan 11s linear 1.6s infinite;
 }
 
-
 .login-form h2,
 .login-form .hint,
 .login-form form > * {
@@ -711,7 +688,6 @@
 .login-form form > :nth-child(5) { --i: 6; }
 .login-form form > :nth-child(6) { --i: 7; }
 .login-form > .hint:last-child { --i: 8; }
-
 
 .login-form h2 {
   margin: 0;
@@ -747,7 +723,6 @@
   font-size: .9375rem;
   line-height: 1.6;
 }
-
 
 .login-form .fld {
   display: flex;
@@ -881,8 +856,6 @@
   animation: lf-rise .4s var(--lf-ease) both;
 }
 
-
-
 .login-form .btn-primary {
   position: relative;
   display: flex;
@@ -967,8 +940,6 @@
   animation: lf-load 1.1s var(--lf-ease) infinite;
 }
 
-
-
 .login-form .form-error {
   margin: 1.25rem 0 0;
   padding: .7rem .95rem;
@@ -981,17 +952,12 @@
   animation: lf-shake .5s var(--lf-ease);
 }
 
-
-
 .login-form .tools {
   position: absolute;
   top: 2.25rem;
   right: 2.25rem;
   z-index: 10;
 }
-
-
-
 
 .login-form > .hint:last-child {
   max-width: none;
@@ -1002,9 +968,6 @@
   font: 400 .6875rem/1.5 var(--font-mono, monospace);
   letter-spacing: .02em;
 }
-
-
-
 
 @keyframes lf-rise {
   from {
@@ -1051,8 +1014,6 @@
   80%      { transform: translateX(2px); }
 }
 
-
-
 @media (max-width: 760px) {
   .login-form {
     min-height: auto;
@@ -1069,9 +1030,6 @@
     right: 1.5rem;
   }
 }
-
-
-
 
 @media (prefers-reduced-motion: reduce) {
   .login-form::before,
@@ -1094,8 +1052,6 @@
     transition-duration: .01ms !important;
   }
 }
-
-
 
 @media (max-width: 1000px) {
   .editor-grid {
