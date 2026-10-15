@@ -168,7 +168,7 @@
 .cat-card { display: flex; flex-direction: column; gap: 1.1rem; height: 100%; padding: 28px; text-decoration: none; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-card); transition: border-color .15s, box-shadow .2s; }
 .cat-card:hover { border-color: var(--line-strong); box-shadow: var(--shadow-float); }
 .cat-top { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
-.icon-box { display: grid; place-items: center; width: 3rem; height: 3rem; border-radius: var(--r-card); background: var(--tint); color: var(--tint-ink); border: 1px solid color-mix(in srgb, var(--tint-ink) 8%, transparent); font: 500 .9375rem/1 var(--font-mono); letter-spacing: 0; }
+/* .icon-box { display: grid; place-items: center; width: 3rem; height: 3rem; border-radius: var(--r-card); background: var(--tint); color: var(--tint-ink); border: 1px solid color-mix(in srgb, var(--tint-ink) 8%, transparent); font: 500 .9375rem/1 var(--font-mono); letter-spacing: 0; } */
 .cat-card h3 { margin: 0; font-size: 1.5rem; line-height: 1.33; letter-spacing: -.01em; }
 .cat-card p { margin: .4rem 0 0; color: var(--muted); font-size: .9375rem; line-height: 1.6; max-width: 48ch; }
 .count { color: var(--muted); font: 500 .75rem/1.4 var(--font-mono); letter-spacing: .02em; text-transform: uppercase; font-variant-numeric: tabular-nums; }
