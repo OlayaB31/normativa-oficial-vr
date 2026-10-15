@@ -19,7 +19,6 @@
       ? cats.map((c, i) => `
         <li><a class="cat-card" href="normativa.html?c=${encodeURIComponent(c.slug)}">
           <span class="cat-top"><span class="count">${c.count} artículo${c.count === 1 ? '' : 's'}</span></span>
-          // <span class="icon-box">${String(i + 1).padStart(2, '0')}</span>
           <span><h3>${esc(c.name)}</h3>${c.description ? `<p>${esc(c.description)}</p>` : ''}</span>
           <span class="go">Ver categoría</span>
         </a></li>`).join('')
