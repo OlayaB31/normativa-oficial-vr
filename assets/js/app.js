@@ -93,7 +93,7 @@
     <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6 7 7M17 17l1.4 1.4M5.6 18.4 7 17M17 7l1.4-1.4"/></svg>
   </button>`;
 
-  const NAV = [['inicio', 'index.html', 'Inicio'], ['normativa', 'normativa.html', 'Normativa'], ['buscar', 'buscar.html', 'Buscar'], ['informacion', 'informacion.html', 'Información']];
+  const NAV = [['inicio', 'index.html', 'Inicio'], ['normativa', 'normativa.html', 'Normativa'], ['buscar', 'buscar.html', 'Buscar'], ['normativa-armas', 'normativa-armas.html', 'Normativa de Armas']];
 
   function renderChrome() {
     const head = document.querySelector('[data-masthead]');
@@ -124,7 +124,7 @@
             <a class="brand" href="index.html"><img class="brand-gif" src="assets/img/logo-vr.gif" alt=""><span class="brand-text"><strong data-server-name>Normativa</strong></span></a>
             <p data-footer-text></p>
           </div>
-          <nav aria-label="Pie"><h2>Normativa</h2><ul><li><a href="normativa.html">Índice</a></li><li><a href="buscar.html">Buscar</a></li><li><a href="informacion.html">Información</a></li></ul></nav>
+          <nav aria-label="Pie"><h2>Normativa</h2><ul><li><a href="normativa.html">Índice</a></li><li><a href="buscar.html">Buscar</a></li><li><a href="normativa-armas.html">Normativa de Armas</a></li></ul></nav>
           <div><h2>Gestión</h2><ul><li><a href="admin/login.html">Acceso administrativo</a></li></ul></div>
         </div>
         <div class="footer-base"><div class="wrap"><span>© ${new Date().getFullYear()} <span data-server-name>Normativa</span></span></div></div>`;
