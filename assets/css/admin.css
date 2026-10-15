@@ -618,100 +618,43 @@
 
 
 /* ==========================================================================
-   LOGIN — PANEL ADMINISTRATIVO
+   LOGIN — PANEL DERECHO (formulario)
+   Reemplaza TODO el bloque "LOGIN — PANEL ADMINISTRATIVO" del CSS actual,
+   desde  `.login-form { ... }`  hasta  `.login-form > .hint:last-child::before`.
+   Mantén `.login`, `.login-side` y los @media del final del archivo.
+   Usa los tokens del sistema (--bg, --surface, --ink, --muted, --line,
+   --accent...), así el botón de tema claro/oscuro también cambia este panel.
    ========================================================================== */
 
 .login-form {
+  --lf-accent: var(--accent, #3655ff);
+  --lf-line: var(--line-strong, rgba(127, 127, 127, .32));
+  --lf-mark: color-mix(in srgb, var(--ink, #fff) 30%, transparent);
+  --lf-ease: cubic-bezier(.22, 1, .36, 1);
+  --lf-col: 26rem;
+  --lf-pad: clamp(1.5rem, 5vw, 4rem);
+  --lf-radius: 6px;
+
   position: relative;
   isolation: isolate;
+  overflow: hidden;
 
   display: flex;
   flex-direction: column;
   justify-content: center;
 
   width: 100%;
-  max-width: 42rem;
+  max-width: none;
   min-height: 100vh;
+  margin: 0;
 
-  margin-inline: auto;
-  padding: clamp(3rem, 7vw, 6.5rem);
+  /* Columna centrada de ancho fijo SIN caja visible (evita las bandas laterales) */
+  padding-block: clamp(3rem, 8vh, 6rem);
+  padding-inline: max(var(--lf-pad), calc((100% - var(--lf-col)) / 2));
 
-  background:
-    radial-gradient(
-      circle at 70% 35%,
-      rgba(57, 76, 255, .075),
-      transparent 30rem
-    ),
-    radial-gradient(
-      circle at 20% 85%,
-      rgba(119, 62, 255, .045),
-      transparent 25rem
-    ),
-    #090611;
+  background: var(--bg, #0b0d12);
+  color: var(--ink, #f4f5f7);
 }
-
-/* Luz ambiental */
-
-.login-form::before {
-  content: "";
-  position: absolute;
-  z-index: -1;
-
-  width: 28rem;
-  height: 28rem;
-
-  top: 50%;
-  left: 50%;
-
-  transform: translate(-50%, -50%);
-
-  border-radius: 50%;
-
-  background: rgba(47, 74, 255, .045);
-
-  filter: blur(70px);
-
-  pointer-events: none;
-}
-
-/* Rejilla decorativa */
-
-.login-form::after {
-  content: "";
-
-  position: absolute;
-  z-index: -1;
-
-  inset: 0;
-
-  opacity: .16;
-
-  background-image:
-    linear-gradient(
-      rgba(255,255,255,.025) 1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      90deg,
-      rgba(255,255,255,.025) 1px,
-      transparent 1px
-    );
-
-  background-size: 48px 48px;
-
-  mask-image: linear-gradient(
-    90deg,
-    transparent,
-    black 25%,
-    black 75%,
-    transparent
-  );
-
-  pointer-events: none;
-}
-
-
-/* ---------- Contenido ---------- */
 
 .login-form > * {
   position: relative;
@@ -719,120 +662,192 @@
 }
 
 
-/* ---------- Encabezado ---------- */
+/* ---------- Marco de registro: cuatro esquinas que se dibujan al cargar ---------- */
 
-.login-form::marker {
-  display: none;
+.login-form::before {
+  content: "";
+  position: absolute;
+  inset: 1.25rem;
+  z-index: 1;
+  pointer-events: none;
+
+  background:
+    linear-gradient(var(--lf-mark), var(--lf-mark)) top left / 16px 1px no-repeat,
+    linear-gradient(var(--lf-mark), var(--lf-mark)) top left / 1px 16px no-repeat,
+    linear-gradient(var(--lf-mark), var(--lf-mark)) top right / 16px 1px no-repeat,
+    linear-gradient(var(--lf-mark), var(--lf-mark)) top right / 1px 16px no-repeat,
+    linear-gradient(var(--lf-mark), var(--lf-mark)) bottom left / 16px 1px no-repeat,
+    linear-gradient(var(--lf-mark), var(--lf-mark)) bottom left / 1px 16px no-repeat,
+    linear-gradient(var(--lf-mark), var(--lf-mark)) bottom right / 16px 1px no-repeat,
+    linear-gradient(var(--lf-mark), var(--lf-mark)) bottom right / 1px 16px no-repeat;
+
+  animation: lf-frame 1.1s var(--lf-ease) .1s both;
 }
+
+/* ---------- Línea de lectura: un barrido lento, como un escáner de documento ---------- */
+
+.login-form::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 1;
+  height: 1px;
+  pointer-events: none;
+
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--lf-accent) 50%,
+    transparent 100%
+  );
+  opacity: .28;
+
+  animation: lf-scan 11s linear 1.6s infinite;
+}
+
+
+/* ---------- Entrada escalonada ---------- */
+
+.login-form > * {
+  animation: lf-rise .85s var(--lf-ease) both;
+  animation-delay: calc(var(--i, 0) * 75ms + 140ms);
+}
+
+.login-form > :nth-child(1) { --i: 0; }
+.login-form > :nth-child(2) { --i: 1; }
+.login-form > :nth-child(3) { --i: 2; }
+.login-form > :nth-child(4) { --i: 3; }
+.login-form > :nth-child(5) { --i: 4; }
+.login-form > :nth-child(6) { --i: 5; }
+.login-form > :nth-child(7) { --i: 6; }
+.login-form > :nth-child(8) { --i: 7; }
+
+
+/* ---------- Encabezado ---------- */
 
 .login-form h2 {
   margin: 0;
-
-  max-width: 31rem;
-
-  color: #f7f7fb;
-
-  font-size: clamp(2rem, 3vw, 2.65rem);
+  max-width: var(--lf-col);
+  color: var(--ink, #f4f5f7);
+  font-family: var(--font-display, inherit);
+  font-size: clamp(2rem, 2.6vw, 2.6rem);
   font-weight: 600;
-
   line-height: 1.08;
-  letter-spacing: -.035em;
+  letter-spacing: -.025em;
+  text-wrap: balance;
 }
 
 .login-form h2::before {
-  content: "NORMATIVA · ADMINISTRACIÓN";
-
+  content: "Normativa / Administración";
   display: block;
+  margin-bottom: 1.15rem;
+  padding-left: 1.6rem;
 
-  margin-bottom: 1.1rem;
+  color: var(--muted, #8b8fa0);
+  font: 500 .6875rem/1 var(--font-mono, monospace);
+  letter-spacing: .08em;
+  text-transform: uppercase;
 
-  color: #7180ff;
-
-  font: 600 .68rem/1 var(--font-mono);
-
-  letter-spacing: .12em;
+  background: linear-gradient(var(--lf-accent), var(--lf-accent)) left center / 1rem 1px no-repeat;
+  animation: lf-rule 1s var(--lf-ease) .55s both;
 }
 
-
-/* ---------- Descripción ---------- */
-
 .login-form .hint {
-  margin: .85rem 0 2.35rem;
-
-  max-width: 29rem;
-
-  color: #918da1;
-
-  font-size: .9rem;
-  line-height: 1.65;
+  max-width: 28rem;
+  margin: .9rem 0 2.4rem;
+  color: var(--muted, #8b8fa0);
+  font-size: .9375rem;
+  line-height: 1.6;
 }
 
 
 /* ---------- Campos ---------- */
 
+.login-form .field {
+  position: relative;
+  display: block;
+}
+
+.login-form .field + .field {
+  margin-top: 1.1rem;
+}
+
 .login-form label {
   display: block;
+  margin: 0 0 .5rem;
+  color: var(--muted, #8b8fa0);
+  font: 500 .6875rem/1.2 var(--font-mono, monospace);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  transition: color .25s ease;
+}
 
-  margin-bottom: .5rem;
-
-  color: #c9c5d4;
-
-  font-size: .75rem;
-  font-weight: 500;
-
-  letter-spacing: .01em;
+.login-form .field:focus-within label {
+  color: var(--ink, #f4f5f7);
 }
 
 .login-form input {
+  display: block;
   width: 100%;
+  min-height: 3.25rem;
+  padding: .8rem 1rem;
 
-  min-height: 3.1rem;
-
-  padding: .8rem .95rem;
-
-  color: #f5f4fa;
-
-  background: rgba(7, 5, 18, .72);
-
-  border: 1px solid rgba(255,255,255,.12);
-
-  border-radius: 8px;
-
+  color: var(--ink, #f4f5f7);
+  background: var(--surface, transparent);
+  border: 1px solid var(--lf-line);
+  border-radius: var(--lf-radius);
   outline: none;
 
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.018);
+  font: 400 .9375rem/1.4 var(--font-ui, inherit);
+  letter-spacing: 0;
 
   transition:
-    border-color .18s ease,
-    background-color .18s ease,
-    box-shadow .18s ease,
-    transform .18s ease;
+    border-color .25s ease,
+    background-color .25s ease,
+    box-shadow .35s var(--lf-ease);
 }
 
 .login-form input::placeholder {
-  color: #555161;
+  color: color-mix(in srgb, var(--muted, #8b8fa0) 65%, transparent);
 }
 
 .login-form input:hover {
-  border-color: rgba(255,255,255,.19);
+  border-color: color-mix(in srgb, var(--ink, #fff) 38%, transparent);
 }
 
 .login-form input:focus {
-  background: rgba(10, 8, 24, .95);
-
-  border-color: rgba(77, 98, 255, .72);
-
-  box-shadow:
-    0 0 0 3px rgba(61, 81, 255, .10),
-    0 8px 30px rgba(0,0,0,.14);
+  border-color: var(--lf-accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--lf-accent) 20%, transparent);
 }
 
+.login-form input:-webkit-autofill,
+.login-form input:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--ink, #f4f5f7);
+  caret-color: var(--ink, #f4f5f7);
+  box-shadow: 0 0 0 100px var(--surface, #14161d) inset;
+  transition: background-color 9999s ease-out;
+}
 
-/* ---------- Separación entre campos ---------- */
+/* Barra de foco que recorre el borde inferior del campo */
+.login-form .field::after {
+  content: "";
+  position: absolute;
+  left: 1px;
+  right: 1px;
+  bottom: 0;
+  height: 2px;
+  border-radius: 0 0 var(--lf-radius) var(--lf-radius);
+  background: var(--lf-accent);
+  transform: scaleX(0);
+  transform-origin: left center;
+  pointer-events: none;
+  transition: transform .5s var(--lf-ease);
+}
 
-.login-form .field + .field {
-  margin-top: 1.25rem;
+.login-form .field:focus-within::after {
+  transform: scaleX(1);
 }
 
 
@@ -840,121 +855,221 @@
 
 .login-form .btn-primary {
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
 
   width: 100%;
-
-  min-height: 3.15rem;
-
-  margin-top: 1.5rem;
-
-  border: 0;
-  border-radius: 8px;
+  min-height: 3.25rem;
+  margin-top: 1.75rem;
+  padding: 0 2.75rem;
 
   color: #fff;
+  background: var(--lf-accent);
+  border: 0;
+  border-radius: var(--lf-radius);
 
-  background:
-    linear-gradient(
-      135deg,
-      #3655ff 0%,
-      #2443ef 100%
-    );
-
-  font-size: .875rem;
-  font-weight: 600;
-
-  letter-spacing: -.005em;
-
+  font: 600 .875rem/1 var(--font-ui, inherit);
+  letter-spacing: 0;
   cursor: pointer;
 
-  box-shadow:
-    0 8px 24px rgba(42, 66, 255, .20);
-
   transition:
-    transform .18s ease,
-    box-shadow .18s ease,
-    filter .18s ease;
+    background-color .25s ease,
+    transform .25s var(--lf-ease),
+    opacity .25s ease;
 }
 
-.login-form .btn-primary::before {
+/* Flecha que entra desde la izquierda al pasar el cursor */
+.login-form .btn-primary::after {
   content: "";
-
   position: absolute;
-
-  top: 0;
-  left: -100%;
-
-  width: 70%;
-  height: 100%;
-
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255,255,255,.12),
-    transparent
-  );
-
-  transform: skewX(-18deg);
-
-  transition: left .55s ease;
+  right: 1.15rem;
+  top: 50%;
+  width: .55rem;
+  height: .55rem;
+  border-top: 1.5px solid currentColor;
+  border-right: 1.5px solid currentColor;
+  opacity: 0;
+  transform: translate(-8px, -50%) rotate(45deg);
+  transition: opacity .3s ease, transform .45s var(--lf-ease);
 }
 
 .login-form .btn-primary:hover {
-  transform: translateY(-1px);
-
-  filter: brightness(1.06);
-
-  box-shadow:
-    0 11px 30px rgba(42, 66, 255, .27);
+  background: color-mix(in srgb, var(--lf-accent) 86%, #000);
 }
 
-.login-form .btn-primary:hover::before {
-  left: 140%;
+.login-form .btn-primary:hover::after,
+.login-form .btn-primary:focus-visible::after {
+  opacity: 1;
+  transform: translate(0, -50%) rotate(45deg);
 }
 
 .login-form .btn-primary:active {
-  transform: translateY(0);
+  transform: translateY(1px);
+}
+
+.login-form .btn-primary:focus-visible {
+  outline: 2px solid var(--lf-accent);
+  outline-offset: 3px;
+}
+
+/* Barra de progreso (se activa con aria-busy="true" o :disabled) */
+.login-form .btn-primary::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: rgba(255, 255, 255, .85);
+  opacity: 0;
+  transform-origin: left center;
+}
+
+.login-form .btn-primary[aria-busy="true"],
+.login-form .btn-primary:disabled {
+  opacity: .85;
+  cursor: progress;
+  pointer-events: none;
+}
+
+.login-form .btn-primary[aria-busy="true"]::before {
+  opacity: 1;
+  animation: lf-load 1.1s var(--lf-ease) infinite;
+}
+
+.login-form .btn-primary[aria-busy="true"]::after {
+  opacity: 0;
 }
 
 
-/* ---------- Herramientas / tema ---------- */
+/* ---------- Error ---------- */
+
+.login-form .form-error {
+  margin: 1.25rem 0 0;
+  padding: .7rem .95rem;
+  border-left: 2px solid var(--danger, #e5484d);
+  border-radius: 0 var(--lf-radius) var(--lf-radius) 0;
+  background: color-mix(in srgb, var(--danger, #e5484d) 9%, transparent);
+  color: var(--danger, #e5484d);
+  font-size: .8125rem;
+  font-weight: 500;
+  animation: lf-shake .5s var(--lf-ease);
+}
+
+
+/* ---------- Tema ---------- */
 
 .login-form .tools {
   position: absolute;
-
-  top: 1.5rem;
-  right: 1.5rem;
-
+  top: 2.25rem;
+  right: 2.25rem;
   z-index: 10;
 }
 
 
-/* ---------- Pie del formulario ---------- */
+/* ---------- Pie ---------- */
 
 .login-form > .hint:last-child {
-  position: relative;
-
-  margin: 2rem 0 0;
-
-  padding-top: 1.25rem;
-
-  color: #625e6d;
-
-  font: 400 .68rem/1.5 var(--font-mono);
-
+  max-width: none;
+  margin: 2.25rem 0 0;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--line, rgba(127, 127, 127, .2));
+  color: var(--muted, #8b8fa0);
+  font: 400 .6875rem/1.5 var(--font-mono, monospace);
   letter-spacing: .02em;
-
-  border-top: 1px solid rgba(255,255,255,.07);
 }
 
-.login-form > .hint:last-child::before {
-  content: "●";
 
-  margin-right: .45rem;
+/* ---------- Animaciones ---------- */
 
-  color: #586cff;
+@keyframes lf-rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
 
-  font-size: .55rem;
+@keyframes lf-rule {
+  from { background-size: 0 1px; }
+  to   { background-size: 1rem 1px; }
+}
+
+@keyframes lf-frame {
+  from {
+    opacity: 0;
+    inset: 2.25rem;
+  }
+  to {
+    opacity: 1;
+    inset: 1.25rem;
+  }
+}
+
+@keyframes lf-scan {
+  from { transform: translateY(0); }
+  to   { transform: translateY(100vh); }
+}
+
+@keyframes lf-load {
+  from { transform: translateX(-100%) scaleX(.4); }
+  to   { transform: translateX(100%) scaleX(.4); }
+}
+
+@keyframes lf-shake {
+  0%, 100% { transform: translateX(0); }
+  20%      { transform: translateX(-6px); }
+  40%      { transform: translateX(5px); }
+  60%      { transform: translateX(-3px); }
+  80%      { transform: translateX(2px); }
+}
+
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 760px) {
+  .login-form {
+    min-height: auto;
+    padding-block: 3.5rem 3rem;
+    padding-inline: 1.5rem;
+  }
+
+  .login-form::before {
+    inset: .75rem;
+  }
+
+  .login-form .tools {
+    top: 1.5rem;
+    right: 1.5rem;
+  }
+}
+
+
+/* ---------- Movimiento reducido ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .login-form::before,
+  .login-form::after,
+  .login-form > *,
+  .login-form h2::before,
+  .login-form .form-error,
+  .login-form .btn-primary[aria-busy="true"]::before {
+    animation: none !important;
+  }
+
+  .login-form::after {
+    display: none;
+  }
+
+  .login-form *,
+  .login-form *::after {
+    transition-duration: .01ms !important;
+  }
 }
 
 
