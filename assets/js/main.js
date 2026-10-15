@@ -1,10 +1,6 @@
 (function () {
 const root = document.documentElement;
-const toggle = document.getElementById('theme-toggle');
 const systemDark = matchMedia('(prefers-color-scheme: dark)');
-
-const isDark = () => (root.dataset.theme ? root.dataset.theme === 'dark' : systemDark.matches);
-const syncLabel = () => { toggle.textContent = isDark() ? 'Modo claro' : 'Modo oscuro'; };
 
 toggle.addEventListener('click', () => {
   const next = isDark() ? 'light' : 'dark';
