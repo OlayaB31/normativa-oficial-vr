@@ -116,20 +116,20 @@
           <div class="tools">${App.themeButton()}</div>
         </div>`;
     }
-    const foot = document.querySelector('[data-footer]');
-    if (foot) {
-      foot.innerHTML = `
-        // <div class="wrap footer-main">
-        //   <div class="footer-brand">
-        //     <a class="brand" href="index.html"><img class="brand-gif" src="assets/img/logo-vr.gif" alt=""><span class="brand-text"><strong data-server-name>Normativa</strong></span></a>
-        //     <p data-footer-text></p>
-        //   </div>
-        //   <nav aria-label="Pie"><h2>Normativa</h2><ul><li><a href="normativa.html">Índice</a></li><li><a href="buscar.html">Buscar</a></li><li><a href="normativa-armas.html">Normativa de Armas</a></li></ul></nav>
-        //   <div><h2>Gestión</h2><ul><li><a href="admin/login.html">Acceso administrativo</a></li></ul></div>
-        // </div>
-        // <div class="footer-base"><div class="wrap"><span>© ${new Date().getFullYear()} <span data-server-name>Normativa</span></span></div></div>`;
-    }
-    syncThemeButtons();
+    // const foot = document.querySelector('[data-footer]');
+    // if (foot) {
+    //   foot.innerHTML = `
+    //     <div class="wrap footer-main">
+    //       <div class="footer-brand">
+    //         <a class="brand" href="index.html"><img class="brand-gif" src="assets/img/logo-vr.gif" alt=""><span class="brand-text"><strong data-server-name>Normativa</strong></span></a>
+    //         <p data-footer-text></p>
+    //       </div>
+    //       <nav aria-label="Pie"><h2>Normativa</h2><ul><li><a href="normativa.html">Índice</a></li><li><a href="buscar.html">Buscar</a></li><li><a href="normativa-armas.html">Normativa de Armas</a></li></ul></nav>
+    //       <div><h2>Gestión</h2><ul><li><a href="admin/login.html">Acceso administrativo</a></li></ul></div>
+    //     </div>
+    //     <div class="footer-base"><div class="wrap"><span>© ${new Date().getFullYear()} <span data-server-name>Normativa</span></span></div></div>`;
+    // }
+    // syncThemeButtons();
   }
 
   function applySettings(s) {
