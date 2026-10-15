@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Normativa de Armas Vida Rol</title>
+  <meta name="description" content="Armamento permitido en cada tipo de rol del servidor.">
+  <script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" type="image/gif" href="assets/icons/logo-vr.gif">
+  <script src="assets/js/theme.js"></script>
+</head>
+<body>
+  <div class="page">
+    <header class="masthead">
+      <div>
+        <h1 class="title-with-image">
+          <img src="assets/icons/logo-vr.gif" alt="" aria-hidden="true">
+          <span>Tipos de rol</span>
+        </h1>
+        <p class="lead">Armamento permitido en cada situación. Toca un arma para ver en qué roles se puede usar.</p>
+      </div>
+      <button class="theme-toggle" id="theme-toggle" type="button">Modo oscuro</button>
+    </header>
+
+    <ul class="legend">
+      <li><span class="yes" aria-hidden="true"></span> Permitido</li>
+      <li><span class="no" aria-hidden="true"></span> No permitido</li>
+    </ul>
+    <p class="mobile-hint">Se muestran solo las armas permitidas en cada situación.</p>
+
+    <div class="matrix" tabindex="0" role="region" aria-label="Armamento permitido por tipo de rol">
+      <table id="matrix"></table>
+    </div>
+    <noscript><p class="lead">Esta tabla necesita JavaScript activado.</p></noscript>
+  </div>
+  <script src="js/data.js"></script>
+  <script src="js/table.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
