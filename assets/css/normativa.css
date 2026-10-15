@@ -171,7 +171,7 @@
 /* .icon-box { display: grid; place-items: center; width: 3rem; height: 3rem; border-radius: var(--r-card); background: var(--tint); color: var(--tint-ink); border: 1px solid color-mix(in srgb, var(--tint-ink) 8%, transparent); font: 500 .9375rem/1 var(--font-mono); letter-spacing: 0; } */
 .cat-card h3 { margin: 0; font-size: 1.5rem; line-height: 1.33; letter-spacing: -.01em; }
 .cat-card p { margin: .4rem 0 0; color: var(--muted); font-size: .9375rem; line-height: 1.6; max-width: 48ch; }
-/* .count { color: var(--muted); font: 500 .75rem/1.4 var(--font-mono); letter-spacing: .02em; text-transform: uppercase; font-variant-numeric: tabular-nums; } */
+.count { color: var(--muted); font: 500 .75rem/1.4 var(--font-mono); letter-spacing: .02em; text-transform: uppercase; font-variant-numeric: tabular-nums; }
 .cat-card .go { margin-top: auto; padding-top: .25rem; color: var(--ink); font-size: .875rem; font-weight: 500; }
 .cat-card .go::after { content: "→"; margin-left: .35rem; display: inline-block; transition: transform .15s var(--ease); }
 .cat-card:hover .go::after { transform: translateX(3px); }
