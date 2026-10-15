@@ -31,7 +31,7 @@ body {
 }
 
 
-.page { max-width: 72rem; margin: 0 auto; padding: 0 clamp(1rem, 3vw, 2.5rem) clamp(1rem, 3vw, 2.5rem); }
+.page { width: 100%; max-width: 72rem; margin: 0 auto; padding: 0 clamp(1rem, 3vw, 2.5rem) clamp(1rem, 3vw, 2.5rem); }
 .weapons-content { padding-top: var(--nav-space, 6.5rem); }
 
 
@@ -66,7 +66,6 @@ thead th { vertical-align: bottom; border-bottom: 1px solid var(--line-hard); fo
 .weapon:hover { background: var(--hover); }
 .weapon[aria-pressed="true"] { box-shadow: inset 0 -3px 0 var(--accent); }
 
-
 .corner, tbody th {
   position: sticky; left: 0; z-index: 1; width: 15rem; min-width: 11rem;
   background: var(--surface); text-align: left;
@@ -89,7 +88,7 @@ td { height: 3.25rem; text-align: center; }
 
 td > .chip-icon, td > .chip-name { display: none; }
 
-/* Estado de filtro por arma */
+
 .is-focus { background: var(--accent-wash); }
 .is-muted .activity, .is-muted .note { color: var(--muted); font-weight: 400; }
 .is-muted .yes, .is-muted .no { opacity: 0.1; }
@@ -135,7 +134,7 @@ td > .chip-icon, td > .chip-name { display: none; }
   table { min-width: 0; }
   .corner { display: none; }
 
-
+ 
   thead { position: sticky; top: 0; z-index: 2; padding: 0.4rem 0; background: var(--bg); border-bottom: 1px solid var(--line-hard); }
   thead tr { display: flex; gap: 0.25rem; overflow-x: auto; }
   thead th { flex: 0 0 4.75rem; border: 0; }
