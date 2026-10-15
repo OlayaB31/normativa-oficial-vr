@@ -10,7 +10,6 @@
   const STATE = { published: 'Vigente', draft: 'Borrador', archived: 'Archivado' };
   const st = { tree: null, map: { c: {}, s: {}, a: {} }, parent: new Map(), flat: [], seq: 0, spy: null };
 
-  /* ---------- Árbol: índices, numeración y orden de lectura ---------- */
   function register(node, type, parent) {
     node.type = type;
     st.map[type][node.slug] = node;
@@ -34,7 +33,6 @@
   const pathOf = (n) => { const p = []; for (let x = st.parent.get(n); x; x = st.parent.get(x)) p.unshift(x); return p; };
   const kindOf = (n) => (n.type === 'c' ? 'Categoría' : KIND[n.kind] || 'Apartado');
 
-  /* ---------- Índice lateral ---------- */
   function articleLink(a) {
     return `<li data-key="a:${esc(a.slug)}"><a class="ix-link" href="${href(a)}">${a.number ? `<span class="ix-num">${esc(a.number)}</span>` : ''}<span>${esc(a.title)}</span></a></li>`;
   }
@@ -73,7 +71,6 @@
     if (link && getComputedStyle(idx).position === 'sticky') idx.scrollTop = Math.max(0, link.offsetTop - idx.clientHeight / 3);
   }
 
-  /* ---------- Piezas comunes ---------- */
   function crumbs(items) {
     const all = [{ name: 'Inicio', href: 'index.html' }, { name: 'Normativa', href: 'normativa.html' }, ...items];
     return `<nav class="crumbs" aria-label="Ruta de navegación"><ol>${all.map((c, i) => i === all.length - 1
@@ -100,8 +97,6 @@
 
   function railActions() {
     return `<div class="rail-actions" aria-label="Herramientas del documento">
-      <button type="button" class="btn btn-sm" data-act="copy">Copiar enlace</button>
-      <button type="button" class="btn btn-sm" data-act="print">Imprimir</button>
     </div>`;
   }
   rail.addEventListener('click', (e) => {
@@ -110,7 +105,6 @@
     if (action === 'print') window.print();
   });
 
-  /* ---------- Vistas ---------- */
   function viewOverview() {
     setMeta('Normativa', 'Índice completo de la normativa oficial del servidor.');
     markCurrent(null);
@@ -202,7 +196,6 @@
     rail.innerHTML = '';
   }
 
-  /* ---------- Enrutado ---------- */
   async function render() {
     const my = ++st.seq;
     const p = new URLSearchParams(location.search);
