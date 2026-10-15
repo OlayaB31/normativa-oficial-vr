@@ -377,3 +377,345 @@ mark { background: var(--mark); color: inherit; padding: 0; border-radius: 2px; 
   .prose { font-size: 11.5pt; }
   a { text-decoration: none; }
 }
+
+/* ==========================================================================
+   Renovación visual · Normativa Oficial Vida Rol
+   Lectura editorial, jerarquía documental y controles discretos.
+   ========================================================================== */
+
+/* ---------- Página del lector ---------- */
+body.normativa-page {
+  --reader-paper: var(--surface);
+  --reader-accent: #254e86;
+  background: var(--wash);
+}
+:root[data-theme="dark"] body.normativa-page { --reader-accent: #82b8ff; }
+
+body.normativa-page .reader {
+  width: 100%;
+  max-width: 1480px;
+  grid-template-columns: minmax(14rem, 16.5rem) minmax(0, 1fr) minmax(12rem, 14rem);
+  gap: clamp(1.5rem, 2.7vw, 2.75rem);
+  padding-top: calc(var(--nav-space) + .7rem);
+  padding-bottom: 4rem;
+}
+body.normativa-page .reader-main { min-width: 0; }
+body.normativa-page .crumbs ol { margin-bottom: 1rem; gap: .25rem .45rem; font-size: .75rem; }
+body.normativa-page .crumbs li + li::before { color: var(--line-strong); }
+body.normativa-page .crumbs [aria-current] { font-weight: 600; }
+
+body.normativa-page .reader-main .view {
+  padding: clamp(1.5rem, 3vw, 3rem);
+  background: var(--reader-paper);
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--reader-accent);
+  border-radius: 7px;
+  box-shadow: 0 8px 28px rgba(17, 32, 56, .035);
+}
+:root[data-theme="dark"] body.normativa-page .reader-main .view {
+  box-shadow: 0 12px 34px rgba(0, 0, 0, .14);
+}
+body.normativa-page .view-head { margin-bottom: 1.75rem; }
+body.normativa-page .section-kicker {
+  display: flex;
+  align-items: center;
+  gap: .55rem;
+  margin: 0 0 .85rem;
+  color: var(--reader-accent);
+  font: 600 .68rem/1.5 var(--font-mono);
+  letter-spacing: .075em;
+  text-transform: uppercase;
+}
+body.normativa-page .section-kicker span { color: var(--muted); }
+body.normativa-page .view-head h1,
+body.normativa-page .doc h1 {
+  max-width: 24ch;
+  font-size: clamp(2.15rem, 3.8vw, 3.35rem);
+  line-height: 1.08;
+  letter-spacing: -.045em;
+}
+body.normativa-page .lede {
+  max-width: 62ch;
+  margin-top: 1rem;
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--muted);
+}
+body.normativa-page .doc-type {
+  margin-bottom: .7rem;
+  padding: .22rem .55rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 3px;
+  background: transparent;
+  color: var(--reader-accent);
+  font-size: .66rem;
+  letter-spacing: .065em;
+}
+:root[data-theme="dark"] body.normativa-page .doc-type {
+  border-color: var(--line-strong);
+  background: transparent;
+  color: var(--reader-accent);
+}
+body.normativa-page .doc-head { gap: 0 1.1rem; align-items: start; }
+body.normativa-page .doc-head .plate-lg {
+  min-width: 3.65rem;
+  min-height: 3.65rem;
+  height: auto;
+  padding: .6rem;
+  border-radius: 5px;
+  background: var(--reader-accent);
+  color: #fff;
+  font-size: 1.1rem;
+  box-shadow: none;
+}
+body.normativa-page .doc-head .doc-type { display: table; }
+body.normativa-page .docmeta {
+  gap: .55rem 1.1rem;
+  margin-top: 1.25rem;
+  padding-block: .85rem;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  font-size: .76rem;
+}
+body.normativa-page .docmeta > span:not(.state) { display: inline-flex; align-items: center; gap: .38rem; }
+body.normativa-page .docmeta > span:not(.state)::before {
+  content: "";
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--line-strong);
+}
+body.normativa-page .state { padding: .16rem .55rem .16rem .45rem; border-radius: 3px; font-size: .71rem; }
+body.normativa-page .state::before { width: .42rem; height: .42rem; }
+
+/* ---------- Índice lateral: jerarquía por líneas, no por tarjetas ---------- */
+body.normativa-page .index {
+  top: 6.4rem;
+  max-height: calc(100vh - 7.2rem);
+  padding: .1rem 1.1rem .8rem 0;
+  border-right: 1px solid var(--line);
+  font-size: .83rem;
+}
+body.normativa-page .ix-title,
+body.normativa-page .rail h2,
+body.normativa-page .related h2 {
+  margin-bottom: .8rem;
+  color: var(--reader-accent);
+  font-size: .66rem;
+  letter-spacing: .085em;
+}
+body.normativa-page .ix-list { padding-top: .3rem; border-top: 1px solid var(--line); }
+body.normativa-page .ix-cat { margin-bottom: .25rem; }
+body.normativa-page .ix-row { gap: .15rem; }
+body.normativa-page .ix-toggle { width: 1.3rem; height: 1.95rem; border-radius: 3px; }
+body.normativa-page .ix-link {
+  gap: .48rem;
+  padding: .38rem .45rem;
+  border-radius: 3px;
+  line-height: 1.45;
+}
+body.normativa-page .ix-link.current { background: var(--tint); color: var(--ink); }
+body.normativa-page .ix-link.current::before { left: -1px; top: 5px; bottom: 5px; width: 2px; border-radius: 0; background: var(--reader-accent); }
+body.normativa-page .ix-num { min-width: 2.4ch; color: var(--muted); font-size: .69rem; }
+body.normativa-page .ix-cat > .ix-row > .ix-link { font-weight: 600; }
+body.normativa-page .ix-sub > ul { margin-left: .85rem; padding-left: .4rem; border-left-color: var(--line); }
+body.normativa-page .ix-sub li > .ix-link,
+body.normativa-page .ix-sub li > .ix-row > .ix-link { font-size: .78rem; }
+body.normativa-page .index-bar {
+  min-height: 2.85rem;
+  border-radius: 5px;
+  justify-content: space-between;
+  border-color: var(--line-strong);
+  background: var(--reader-paper);
+}
+
+/* ---------- Listados de categorías y apartados ---------- */
+body.normativa-page .outline { border-top: 1px solid var(--line); }
+body.normativa-page .outline > li { border-top: 0; border-bottom: 1px solid var(--line); }
+body.normativa-page .outline a {
+  display: grid;
+  grid-template-columns: minmax(3.2rem, auto) minmax(0, 1fr) auto;
+  gap: .85rem;
+  align-items: baseline;
+  padding: .9rem .65rem;
+  margin: 0 -.65rem;
+  border-radius: 3px;
+  transition: background-color .16s ease, color .16s ease;
+}
+body.normativa-page .outline a:hover { background: var(--wash); text-decoration: none; }
+body.normativa-page .outline a:hover .ol-title { text-decoration: none; color: var(--reader-accent); }
+body.normativa-page .outline .ol-num { min-width: 3.2rem; color: var(--reader-accent); font-size: .76rem; }
+body.normativa-page .outline .ol-title { font-size: .94rem; font-weight: 600; line-height: 1.45; }
+body.normativa-page .outline .ol-node > a .ol-title { font-size: 1.14rem; line-height: 1.35; letter-spacing: -.025em; }
+body.normativa-page .outline .outline .ol-node > a .ol-title { font-size: .96rem; font-weight: 550; }
+body.normativa-page .outline .ol-count {
+  justify-self: end;
+  padding: .15rem .35rem;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  font-size: .64rem;
+  letter-spacing: .045em;
+}
+body.normativa-page .outline .outline {
+  margin: .05rem 0 .4rem .9rem;
+  padding-left: .65rem;
+  border-left: 1px solid var(--line);
+}
+body.normativa-page .outline .outline a { padding-block: .55rem; }
+body.normativa-page .outline .ol-sum {
+  margin: -.25rem 0 .9rem calc(3.2rem + .85rem);
+  color: var(--muted);
+  font-size: .84rem;
+  line-height: 1.7;
+  max-width: 60ch;
+}
+body.normativa-page .view-head .docmeta { margin-bottom: .2rem; }
+body.normativa-page .empty { padding: 1.75rem; border: 1px dashed var(--line-strong); color: var(--muted); }
+
+/* ---------- Cuerpo de un artículo ---------- */
+body.normativa-page .doc .prose {
+  max-width: 52rem;
+  font-size: 1.02rem;
+  line-height: 1.86;
+  letter-spacing: -.008em;
+}
+body.normativa-page .prose p { margin-bottom: 1.15em; }
+body.normativa-page .prose h3 {
+  margin-top: 2.25em;
+  padding-top: .5em;
+  border-top: 1px solid var(--line);
+  font-size: 1.43rem;
+  line-height: 1.35;
+  scroll-margin-top: 6rem;
+}
+body.normativa-page .prose h4 { margin-top: 1.65em; scroll-margin-top: 6rem; }
+body.normativa-page .prose blockquote {
+  padding: .25rem 0 .25rem 1rem;
+  border-left: 3px solid var(--reader-accent);
+}
+body.normativa-page .prose table { border-radius: 4px; }
+body.normativa-page .prose th { color: var(--ink); }
+body.normativa-page .doc-foot { max-width: 52rem; margin-top: 2.4rem; padding-top: 1.25rem; }
+body.normativa-page .scope { border-radius: 4px; border-left: 3px solid var(--reader-accent); }
+body.normativa-page .taglist a { border-radius: 3px; padding: .2rem .55rem; }
+body.normativa-page .related li { border-bottom: 1px solid var(--line); }
+body.normativa-page .related a { padding: .8rem .25rem; }
+body.normativa-page .pager { gap: .7rem; margin-top: 1.25rem; }
+body.normativa-page .pager a { border-radius: 4px; background: var(--surface); padding: 1rem; }
+body.normativa-page .pager a:hover { border-color: var(--reader-accent); box-shadow: none; }
+body.normativa-page .pager small { color: var(--reader-accent); }
+body.normativa-page .pager .up { border-style: solid; }
+
+/* ---------- Panel lateral de datos y tabla de contenidos ---------- */
+body.normativa-page .rail {
+  top: 6.4rem;
+  padding: .15rem 0 .6rem 1.1rem;
+  border-left: 1px solid var(--line);
+  color: var(--ink-2);
+}
+body.normativa-page .rail h2:not(:first-child) { margin-top: 1.8rem; }
+body.normativa-page .facts {
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: .55rem .65rem;
+  padding: .75rem 0 1rem;
+  margin-bottom: .75rem;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  font-size: .76rem;
+}
+body.normativa-page .facts dd { max-width: 8.5rem; color: var(--ink); overflow-wrap: anywhere; }
+body.normativa-page .rail-actions { display: grid; grid-template-columns: 1fr 1fr; gap: .45rem; margin-bottom: 1.4rem; }
+body.normativa-page .rail-actions .btn { min-width: 0; padding: .5rem .45rem; border-radius: 4px; font-size: .72rem; }
+body.normativa-page .rail > .btn { width: 100%; white-space: normal; }
+body.normativa-page .toc { border-left-color: var(--line-strong); }
+body.normativa-page .toc a { padding: .38rem .65rem; font-size: .77rem; }
+body.normativa-page .toc a.on { border-left-color: var(--reader-accent); }
+body.normativa-page .banner { border-radius: 4px; border-left: 3px solid #b7791f; }
+
+/* ---------- Portada y búsqueda: misma identidad, menos brillo de plantilla ---------- */
+.hero {
+  padding-bottom: 4.75rem;
+  background: linear-gradient(145deg, #111b2b 0%, #142f54 58%, #0e1728 100%);
+}
+.hero::before { opacity: .28; }
+.hero > .hero-video-shade {
+  background:
+    linear-gradient(180deg, rgba(8, 17, 31, .64) 0%, rgba(8, 17, 31, .56) 43%, rgba(8, 17, 31, .93) 100%),
+    linear-gradient(90deg, rgba(8, 17, 31, .46), rgba(8, 17, 31, .12) 50%, rgba(8, 17, 31, .46));
+}
+.hero h1 { letter-spacing: -.045em; }
+.hero-search { border-radius: 8px; }
+.hero-search .btn { border-radius: 5px; }
+.cat-card, .panel { border-radius: 7px; }
+.cat-card { padding: 1.55rem; border-left: 2px solid transparent; }
+.cat-card:hover { transform: translateY(-2px); border-left-color: var(--accent); }
+.panel { padding: 1.6rem; }
+.search-form { border-radius: 7px; }
+.result { border-radius: 6px; }
+.result:hover { box-shadow: none; border-color: var(--reader-accent, var(--accent)); }
+
+/* ---------- Adaptación móvil ---------- */
+@media (max-width: 1180px) {
+  body.normativa-page .reader {
+    grid-template-columns: minmax(13rem, 15.5rem) minmax(0, 1fr);
+    grid-template-areas: "index main" "index rail";
+    gap: 1.7rem;
+  }
+  body.normativa-page .rail { top: auto; padding-top: 1.4rem; margin-top: 1rem; }
+}
+@media (max-width: 860px) {
+  body.normativa-page .reader { display: block; padding-top: calc(var(--nav-space) + .15rem); }
+  body.normativa-page .index-bar { display: flex; }
+  body.normativa-page .index {
+    display: none;
+    position: static;
+    max-height: 55vh;
+    overflow: auto;
+    margin: -.25rem 0 1.4rem;
+    padding: 1rem;
+    border: 1px solid var(--line);
+    border-top: 2px solid var(--reader-accent);
+    border-radius: 5px;
+    background: var(--surface);
+  }
+  body.normativa-page .index.open { display: block; }
+  body.normativa-page .reader-main .view { padding: clamp(1.25rem, 4vw, 2rem); }
+  body.normativa-page .rail {
+    display: block;
+    max-width: none;
+    margin-top: 1.5rem;
+    padding: 1.5rem 0 0;
+    border-left: 0;
+    border-top: 1px solid var(--line);
+  }
+  body.normativa-page .facts { max-width: 34rem; }
+  body.normativa-page .rail-actions { display: flex; }
+  body.normativa-page .rail-actions .btn { min-width: 7rem; }
+  body.normativa-page .pager { max-width: none; }
+}
+@media (max-width: 520px) {
+  body.normativa-page .reader { padding-bottom: 2.5rem; }
+  body.normativa-page .reader-main .view { padding: 1.1rem; border-top-width: 2px; }
+  body.normativa-page .view-head h1,
+  body.normativa-page .doc h1 { font-size: clamp(1.9rem, 9vw, 2.45rem); }
+  body.normativa-page .doc-head { grid-template-columns: 1fr; }
+  body.normativa-page .doc-head .plate-lg { margin-bottom: .9rem; }
+  body.normativa-page .docmeta { align-items: flex-start; flex-direction: column; gap: .5rem; }
+  body.normativa-page .outline a { grid-template-columns: 2.7rem minmax(0, 1fr); gap: .55rem; padding: .75rem .4rem; margin-inline: -.4rem; }
+  body.normativa-page .outline .ol-num { min-width: 0; }
+  body.normativa-page .outline .ol-count { grid-column: 2; justify-self: start; margin-top: -.3rem; }
+  body.normativa-page .outline .ol-sum { margin-left: 3.1rem; }
+  body.normativa-page .outline .outline { margin-left: .4rem; padding-left: .45rem; }
+  body.normativa-page .pager { grid-template-columns: 1fr; }
+  body.normativa-page .pager .prev,
+  body.normativa-page .pager .next,
+  body.normativa-page .pager .up { grid-column: 1; text-align: left; }
+  body.normativa-page .pager .next { text-align: left; }
+  body.normativa-page .rail-actions .btn { flex: 1; }
+  .cat-card, .panel { padding: 1.25rem; }
+}
+@media print {
+  body.normativa-page { background: #fff !important; }
+  body.normativa-page .reader-main .view { padding: 0; border: 0; box-shadow: none; }
+  body.normativa-page .reader { max-width: none; padding-top: 0; }
+}
