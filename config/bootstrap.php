@@ -402,7 +402,7 @@ function clean_node(DOMNode $node, array $allowed, array $drop): void
             $val = trim($attr->nodeValue ?? '');
             $keep = false;
             if ($tag === 'a' && $name === 'href') {
-                $keep = (bool) preg_match('~^(https?://|mailto:|#|normativa\.html\?|informacion\.html|/)~i', $val);
+                $keep = (bool) preg_match('~^(https?://|mailto:|#|normativa\.html\?|normativa-armas\.html|/)~i', $val);
             } elseif ($tag === 'div' && $name === 'class') {
                 $classes = array_values(array_intersect(preg_split('/\s+/', $val) ?: [], ['callout', 'note', 'warn', 'hl']));
                 if ($classes) {
