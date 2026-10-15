@@ -30,9 +30,11 @@ body {
   font: 400 1rem/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 }
 
-.page { max-width: 72rem; margin: 0 auto; padding: clamp(1rem, 3vw, 2.5rem); }
 
-.masthead { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 1.5rem; }
+.page { max-width: 72rem; margin: 0 auto; padding: 0 clamp(1rem, 3vw, 2.5rem) clamp(1rem, 3vw, 2.5rem); }
+.weapons-content { padding-top: var(--nav-space, 6.5rem); }
+
+
 h1 { margin: 0; font-size: clamp(1.75rem, 4vw, 2.5rem); line-height: 1.1; font-weight: 700; letter-spacing: -0.02em; }
 .lead { margin: 0.5rem 0 0; max-width: 48ch; color: var(--muted); }
 
@@ -52,7 +54,7 @@ th, td { padding: 0; border-bottom: 1px solid var(--line); }
 tbody tr:last-child > * { border-bottom: 0; }
 tbody tr:hover > * { background: var(--hover); }
 
-/* Cabecera: cada arma es un botón */
+
 thead th { vertical-align: bottom; border-bottom: 1px solid var(--line-hard); font-weight: 600; }
 .corner { padding: 0 1rem 0.75rem; text-align: left; font-size: 0.875rem; color: var(--muted); }
 .weapon {
@@ -64,7 +66,7 @@ thead th { vertical-align: bottom; border-bottom: 1px solid var(--line-hard); fo
 .weapon:hover { background: var(--hover); }
 .weapon[aria-pressed="true"] { box-shadow: inset 0 -3px 0 var(--accent); }
 
-/* Primera columna fija al desplazar */
+
 .corner, tbody th {
   position: sticky; left: 0; z-index: 1; width: 15rem; min-width: 11rem;
   background: var(--surface); text-align: left;
@@ -125,7 +127,6 @@ td > .chip-icon, td > .chip-name { display: none; }
 }
 
 @media (max-width: 40rem) {
-  .masthead { flex-direction: column; }
   .legend { display: none; }
   .mobile-hint { display: block; margin: 0 0 0.75rem; font-size: 0.875rem; color: var(--muted); }
 
@@ -134,7 +135,7 @@ td > .chip-icon, td > .chip-name { display: none; }
   table { min-width: 0; }
   .corner { display: none; }
 
-  /* Barra de armas fija arriba, con scroll lateral */
+
   thead { position: sticky; top: 0; z-index: 2; padding: 0.4rem 0; background: var(--bg); border-bottom: 1px solid var(--line-hard); }
   thead tr { display: flex; gap: 0.25rem; overflow-x: auto; }
   thead th { flex: 0 0 4.75rem; border: 0; }
