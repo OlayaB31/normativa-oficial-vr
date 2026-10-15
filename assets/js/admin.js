@@ -5,7 +5,6 @@
 
   const NAV = [['resumen', 'index.html', 'Resumen'], ['estructura', 'categorias.html', 'Estructura'], ['articulos', 'normativa.html', 'Artículos'], ['ajustes', 'configuracion.html', 'Configuración']];
 
-  /** Comprueba la sesión y dibuja la barra de navegación. Devuelve false si redirige al acceso. */
   Admin.init = async (active) => {
     let s;
     try { s = await api('auth.php'); }
@@ -36,7 +35,6 @@
     return true;
   };
 
-  /* ---------- Diálogos ---------- */
   Admin.confirm = (message, { title = 'Confirmar', ok = 'Aceptar', danger = false } = {}) => new Promise((resolve) => {
     const dlg = document.createElement('dialog');
     dlg.className = 'modal';
@@ -58,8 +56,7 @@
     } else ctl = `<input id="${id}" name="${f.name}" type="${f.type || 'text'}" value="${esc(v)}" maxlength="${f.max || 200}" autocomplete="off">`;
     return `<label class="fld" for="${id}">${esc(f.label)}${ctl}${f.hint ? `<small>${esc(f.hint)}</small>` : ''}</label>`;
   };
-
-  /** Formulario modal. onSubmit(values) puede lanzar un error: se muestra sin cerrar el diálogo. */
+  
   Admin.form = ({ title, fields, submit = 'Guardar', onSubmit }) => new Promise((resolve) => {
     const dlg = document.createElement('dialog');
     dlg.className = 'modal';
@@ -84,7 +81,6 @@
     form.querySelector('input,select,textarea')?.focus();
   });
 
-  /* ---------- Acceso (login.html) ---------- */
   Admin.login = async () => {
     const slot = document.querySelector('[data-theme-slot]');
     if (slot) slot.innerHTML = App.themeButton();
@@ -101,7 +97,7 @@
       <form id="login-form" novalidate>
         <label class="fld" for="u">Usuario<input id="u" name="username" type="text" autocomplete="username" required maxlength="40"></label>
         ${setup ? '<label class="fld" for="dn">Nombre visible<input id="dn" name="display_name" type="text" maxlength="80"></label>' : ''}
-        <label class="fld" for="p">Contraseña<input id="p" name="password" type="password" autocomplete="${setup ? 'new-password' : 'current-password'}" required maxlength="200">${setup ? '<small>Mínimo 10 caracteres.</small>' : ''}</label>
+        <label class="fld" for="p">Contraseña<span class="pw"><input id="p" name="password" type="password" autocomplete="${setup ? 'new-password' : 'current-password'}" required maxlength="200"><button class="pw-toggle" type="button" aria-pressed="false" aria-label="Mostrar contraseña">Mostrar</button></span>${setup ? '<small>Mínimo 10 caracteres.</small>' : ''}<small class="caps" role="status" hidden>Bloq Mayús activado</small></label>
         ${setup ? '<label class="fld" for="p2">Repite la contraseña<input id="p2" name="password2" type="password" autocomplete="new-password" maxlength="200"></label>' : ''}
         <p class="form-error" role="alert" hidden></p>
         <button class="btn btn-primary" type="submit">${setup ? 'Crear administrador' : 'Entrar'}</button>
@@ -114,17 +110,32 @@
       err.hidden = true;
       if (!v.username.trim() || !v.password) { err.textContent = 'Completa usuario y contraseña.'; err.hidden = false; return; }
       if (setup && v.password !== v.password2) { err.textContent = 'Las contraseñas no coinciden.'; err.hidden = false; return; }
-      const btn = form.querySelector('button');
+      const btn = form.querySelector('[type=submit]');
       btn.disabled = true;
       try {
         await api('auth.php', { method: 'POST', body: { action: setup ? 'setup' : 'login', username: v.username, password: v.password, display_name: v.display_name } });
         location.replace('index.html');
       } catch (ex) { err.textContent = ex.message; err.hidden = false; btn.disabled = false; }
     });
+    const toggle = form.querySelector('.pw-toggle');
+    const caps = form.querySelector('.caps');
+    const pwFields = form.querySelectorAll('input[type=password], input[name^=password]');
+    toggle.addEventListener('click', () => {
+      const show = toggle.getAttribute('aria-pressed') !== 'true';
+      pwFields.forEach((i) => (i.type = show ? 'text' : 'password'));
+      toggle.setAttribute('aria-pressed', String(show));
+      toggle.setAttribute('aria-label', show ? 'Ocultar contraseña' : 'Mostrar contraseña');
+      toggle.textContent = show ? 'Ocultar' : 'Mostrar';
+      document.getElementById('p').focus();
+    });
+    const syncCaps = (e) => { if (e.getModifierState) caps.hidden = !e.getModifierState('CapsLock'); };
+    const pInput = document.getElementById('p');
+    pInput.addEventListener('keydown', syncCaps);
+    pInput.addEventListener('keyup', syncCaps);
+    pInput.addEventListener('blur', () => { caps.hidden = true; });
     document.getElementById('u').focus();
   };
 
-  /* ---------- Resumen (index.html) ---------- */
   Admin.dashboard = async () => {
     const s = await api('stats.php');
     document.getElementById('figures').innerHTML = `
@@ -136,7 +147,6 @@
       : '<tr><td colspan="5" class="empty">Aún no hay actividad.</td></tr>';
   };
 
-  /* ---------- Configuración ---------- */
   Admin.settings = async () => {
     const f = document.getElementById('settings-form');
     const cfg = await api('settings.php');
