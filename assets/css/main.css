@@ -1,5 +1,4 @@
 :root {
-  /* Paleta base */
   --c-iris: #0036ff;
   --c-cyan: #0093ff;
   --c-void: #05061b;
@@ -14,12 +13,10 @@
   --c-mint: #e6fff7;
   --c-charcoal: #333333;
 
-
   --font-display: "Aeonik Pro", "Inter Tight", "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --font-ui: "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
- 
   --r-input: 6px;
   --r-card: 14px;
   --r-card-lg: 20px;
@@ -31,12 +28,10 @@
   --nav-space: 6.5rem;
   --ease: cubic-bezier(.2, .7, .2, 1);
 
-
   --shadow-float: rgba(0, 0, 0, .06) 0 12px 12px -3px, rgba(0, 0, 0, .04) 0 6px 6px -3px, rgba(0, 0, 0, .02) 0 3px 3px -1.5px, rgba(0, 0, 0, .03) 0 1px 1px -.5px, rgba(0, 0, 0, .06) 0 0 0 1px;
   --shadow-pop: rgba(0, 0, 0, .08) 0 12px 24px -3px, rgba(0, 0, 0, .04) 0 6px 6px -3px, rgba(0, 0, 0, .06) 0 0 0 1px;
   --sheen: inset 0 1px 2px -.5px rgba(255, 255, 255, .12), inset 0 .5px .5px 0 rgba(255, 255, 255, .16), inset 0 8px 24px -4px rgba(255, 255, 255, .16);
 }
-
 
 :root,
 :root[data-theme="light"] {
@@ -61,7 +56,6 @@
   --nav-bg: rgba(255, 255, 255, .92);
   --code-bg: var(--c-void);
 }
-
 
 :root[data-theme="dark"] {
   color-scheme: dark;
@@ -115,7 +109,6 @@ kbd {
   background: var(--wash); border: 1px solid var(--line-strong); border-bottom-width: 2px; border-radius: 6px;
 }
 
-
 .eyebrow {
   display: inline-block; margin: 0; padding: 4px 12px; border-radius: var(--r-pill);
   background: var(--c-line); color: var(--c-ink);
@@ -124,7 +117,6 @@ kbd {
 :root[data-theme="dark"] .eyebrow { background: rgba(255, 255, 255, .1); color: var(--ink); }
 .eyebrow-dark { background: rgba(255, 255, 255, .12); color: #fff; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .22); }
 :root[data-theme="dark"] .eyebrow-dark { background: rgba(255, 255, 255, .12); color: #fff; }
-
 
 .plate {
   display: inline-flex; align-items: center; justify-content: center; min-width: 2.25rem; padding: 2px 8px;
@@ -136,7 +128,6 @@ kbd {
   min-width: 3.5rem; height: 3.5rem; padding: 0 .9rem; border-radius: var(--r-card);
   font: 500 1.25rem/1 var(--font-display); letter-spacing: -.01em;
 }
-
 
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: .5rem; padding: 10px 20px;
@@ -198,7 +189,6 @@ input[type=search]::-webkit-search-cancel-button, input[type=search]::-webkit-se
 .state-draft::before { background: transparent; box-shadow: inset 0 0 0 1.5px var(--muted); }
 .state-archived::before { border-radius: 2px; }
 
-
 .masthead { position: sticky; top: 0; z-index: 60; height: 0; pointer-events: none; }
 .masthead .pill {
   position: absolute; top: 12px; left: 50%; transform: translateX(-50%); width: min(calc(100% - 2 * var(--gutter)), 1120px);
@@ -239,7 +229,6 @@ input[type=search]::-webkit-search-cancel-button, input[type=search]::-webkit-se
 .qs-empty, .qs-all { padding: .75rem .85rem; color: var(--muted); font-size: .875rem; }
 .qs-all { display: block; text-decoration: none; font-weight: 500; color: var(--link); border-top: 1px solid var(--line); }
 
-
 .footer { margin-top: 6rem; border-top: 1px solid var(--line); background: var(--bg); color: var(--muted); font-size: .875rem; }
 .footer-main { display: grid; grid-template-columns: minmax(0, 1.6fr) repeat(2, minmax(0, 1fr)); gap: 2rem 3rem; padding-block: 3rem 2.5rem; }
 .footer-brand { display: grid; gap: .8rem; align-content: start; }
@@ -251,7 +240,6 @@ input[type=search]::-webkit-search-cancel-button, input[type=search]::-webkit-se
 .footer a:hover { color: var(--ink); text-decoration: underline; }
 .footer-base { border-top: 1px solid var(--line); }
 .footer-base .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .5rem 2rem; padding-block: 1.25rem; font-size: .8125rem; }
-
 
 .prose { font: 400 1.0625rem/1.75 var(--font-ui); letter-spacing: -.01em; color: var(--ink); overflow-wrap: break-word; }
 .prose > :first-child { margin-top: 0; }
@@ -299,7 +287,6 @@ input[type=search]::-webkit-search-cancel-button, input[type=search]::-webkit-se
 .empty { padding: 2rem 0; color: var(--muted); }
 .loading { padding: 3rem 0; color: var(--muted); }
 .banner { margin: 0 0 1.5rem; padding: .75rem 1rem; border: 1px solid var(--line-strong); border-radius: var(--r-card); background: var(--wash); font-size: .9375rem; font-weight: 500; }
-
 
 .reader, .search-page, .info-page, .admin-main, .page-start { padding-top: var(--nav-space); }
 
