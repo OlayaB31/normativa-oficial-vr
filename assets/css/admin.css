@@ -544,6 +544,7 @@
 }
 
 
+
 .login-side {
   position: relative;
   isolation: isolate;
@@ -616,45 +617,344 @@
 }
 
 
+/* ==========================================================================
+   LOGIN — PANEL ADMINISTRATIVO
+   ========================================================================== */
+
 .login-form {
   position: relative;
+  isolation: isolate;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
 
-  padding: clamp(2rem, 6vw, 5rem);
-  max-width: 34rem;
   width: 100%;
+  max-width: 42rem;
+  min-height: 100vh;
+
   margin-inline: auto;
+  padding: clamp(3rem, 7vw, 6.5rem);
+
+  background:
+    radial-gradient(
+      circle at 70% 35%,
+      rgba(57, 76, 255, .075),
+      transparent 30rem
+    ),
+    radial-gradient(
+      circle at 20% 85%,
+      rgba(119, 62, 255, .045),
+      transparent 25rem
+    ),
+    #090611;
+}
+
+/* Luz ambiental */
+
+.login-form::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+
+  width: 28rem;
+  height: 28rem;
+
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+
+  border-radius: 50%;
+
+  background: rgba(47, 74, 255, .045);
+
+  filter: blur(70px);
+
+  pointer-events: none;
+}
+
+/* Rejilla decorativa */
+
+.login-form::after {
+  content: "";
+
+  position: absolute;
+  z-index: -1;
+
+  inset: 0;
+
+  opacity: .16;
+
+  background-image:
+    linear-gradient(
+      rgba(255,255,255,.025) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255,255,255,.025) 1px,
+      transparent 1px
+    );
+
+  background-size: 48px 48px;
+
+  mask-image: linear-gradient(
+    90deg,
+    transparent,
+    black 25%,
+    black 75%,
+    transparent
+  );
+
+  pointer-events: none;
+}
+
+
+/* ---------- Contenido ---------- */
+
+.login-form > * {
+  position: relative;
+  z-index: 2;
+}
+
+
+/* ---------- Encabezado ---------- */
+
+.login-form::marker {
+  display: none;
 }
 
 .login-form h2 {
-  margin: 0 0 .4rem;
-  font-size: 2rem;
-  line-height: 1.2;
-  letter-spacing: -.01em;
+  margin: 0;
+
+  max-width: 31rem;
+
+  color: #f7f7fb;
+
+  font-size: clamp(2rem, 3vw, 2.65rem);
+  font-weight: 600;
+
+  line-height: 1.08;
+  letter-spacing: -.035em;
 }
+
+.login-form h2::before {
+  content: "NORMATIVA · ADMINISTRACIÓN";
+
+  display: block;
+
+  margin-bottom: 1.1rem;
+
+  color: #7180ff;
+
+  font: 600 .68rem/1 var(--font-mono);
+
+  letter-spacing: .12em;
+}
+
+
+/* ---------- Descripción ---------- */
 
 .login-form .hint {
-  margin: 0 0 1.5rem;
-  font-size: .9375rem;
+  margin: .85rem 0 2.35rem;
+
+  max-width: 29rem;
+
+  color: #918da1;
+
+  font-size: .9rem;
+  line-height: 1.65;
 }
 
-.login-form > .hint {
-  margin: 1.5rem 0 0;
+
+/* ---------- Campos ---------- */
+
+.login-form label {
+  display: block;
+
+  margin-bottom: .5rem;
+
+  color: #c9c5d4;
+
+  font-size: .75rem;
+  font-weight: 500;
+
+  letter-spacing: .01em;
 }
+
+.login-form input {
+  width: 100%;
+
+  min-height: 3.1rem;
+
+  padding: .8rem .95rem;
+
+  color: #f5f4fa;
+
+  background: rgba(7, 5, 18, .72);
+
+  border: 1px solid rgba(255,255,255,.12);
+
+  border-radius: 8px;
+
+  outline: none;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.018);
+
+  transition:
+    border-color .18s ease,
+    background-color .18s ease,
+    box-shadow .18s ease,
+    transform .18s ease;
+}
+
+.login-form input::placeholder {
+  color: #555161;
+}
+
+.login-form input:hover {
+  border-color: rgba(255,255,255,.19);
+}
+
+.login-form input:focus {
+  background: rgba(10, 8, 24, .95);
+
+  border-color: rgba(77, 98, 255, .72);
+
+  box-shadow:
+    0 0 0 3px rgba(61, 81, 255, .10),
+    0 8px 30px rgba(0,0,0,.14);
+}
+
+
+/* ---------- Separación entre campos ---------- */
+
+.login-form .field + .field {
+  margin-top: 1.25rem;
+}
+
+
+/* ---------- Botón ---------- */
+
+.login-form .btn-primary {
+  position: relative;
+  overflow: hidden;
+
+  width: 100%;
+
+  min-height: 3.15rem;
+
+  margin-top: 1.5rem;
+
+  border: 0;
+  border-radius: 8px;
+
+  color: #fff;
+
+  background:
+    linear-gradient(
+      135deg,
+      #3655ff 0%,
+      #2443ef 100%
+    );
+
+  font-size: .875rem;
+  font-weight: 600;
+
+  letter-spacing: -.005em;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 8px 24px rgba(42, 66, 255, .20);
+
+  transition:
+    transform .18s ease,
+    box-shadow .18s ease,
+    filter .18s ease;
+}
+
+.login-form .btn-primary::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: -100%;
+
+  width: 70%;
+  height: 100%;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,.12),
+    transparent
+  );
+
+  transform: skewX(-18deg);
+
+  transition: left .55s ease;
+}
+
+.login-form .btn-primary:hover {
+  transform: translateY(-1px);
+
+  filter: brightness(1.06);
+
+  box-shadow:
+    0 11px 30px rgba(42, 66, 255, .27);
+}
+
+.login-form .btn-primary:hover::before {
+  left: 140%;
+}
+
+.login-form .btn-primary:active {
+  transform: translateY(0);
+}
+
+
+/* ---------- Herramientas / tema ---------- */
 
 .login-form .tools {
   position: absolute;
-  top: 1.25rem;
-  right: 1.25rem;
+
+  top: 1.5rem;
+  right: 1.5rem;
+
+  z-index: 10;
 }
 
-.login-form .btn-primary {
-  width: 100%;
-  padding: 12px;
-  font-size: .9375rem;
-  margin-top: .5rem;
+
+/* ---------- Pie del formulario ---------- */
+
+.login-form > .hint:last-child {
+  position: relative;
+
+  margin: 2rem 0 0;
+
+  padding-top: 1.25rem;
+
+  color: #625e6d;
+
+  font: 400 .68rem/1.5 var(--font-mono);
+
+  letter-spacing: .02em;
+
+  border-top: 1px solid rgba(255,255,255,.07);
+}
+
+.login-form > .hint:last-child::before {
+  content: "●";
+
+  margin-right: .45rem;
+
+  color: #586cff;
+
+  font-size: .55rem;
 }
 
 
@@ -696,5 +996,12 @@
 @media (max-width: 960px) {
   .admin-main {
     padding-top: 11.5rem;
+  }
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  .login-side .login-video video {
+    display: none;
   }
 }
