@@ -106,7 +106,7 @@
             <span class="brand-text"><strong data-server-name>Normativa</strong></span>
           </a>
           <nav class="mainnav" aria-label="Principal">${NAV.map(([k, h, l]) => `<a href="${h}"${k === active ? ' aria-current="page"' : ''}>${l}</a>`).join('')}</nav>
-          ${active === 'inicio' || active === 'buscar' ? '' : `
+          ${active === 'inicio' || active === 'buscar' || active === 'normativa-armas' ? '' : `
           <form class="quick-search" role="search" action="buscar.html">
             <label class="sr-only" for="qs-input">Buscar normativa</label>
             <input id="qs-input" type="search" name="q" placeholder="Buscar normativa" autocomplete="off" aria-controls="qs-list">
