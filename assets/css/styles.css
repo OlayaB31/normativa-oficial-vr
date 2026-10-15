@@ -82,8 +82,8 @@ td { height: 3.25rem; text-align: center; }
   height: 1.5rem;
   background: center / contain no-repeat;
 }
-.yes { background-image: url("../assets/icons/permitido.png"); }
-.no  { background-image: url("../assets/icons/nopermitido.png"); }
+.yes { background-image: url("/assets/icons/permitido.png"); }
+.no  { background-image: url("/assets/icons/nopermitido.png"); }
 
 td > .chip-icon, td > .chip-name { display: none; }
 
