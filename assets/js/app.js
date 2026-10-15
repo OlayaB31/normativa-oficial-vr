@@ -113,7 +113,7 @@
             <kbd>/</kbd>
             <div class="qs-list" id="qs-list" hidden></div>
           </form>`}
-          <div class="tools">${App.themeButton()}<a class="btn btn-sm admin-link" href="admin/login.html"></a></div>
+          <div class="tools">${App.themeButton()}</div>
         </div>`;
     }
     const foot = document.querySelector('[data-footer]');
