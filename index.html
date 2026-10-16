@@ -13,7 +13,7 @@
 <link rel="icon" href="assets/img/logo-vr.gif" type="image/gif">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&amp;family=Inter+Tight:wght@400;500&amp;family=Inter:wght@400;500;600;700&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&amp;family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600;700&amp;family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&amp;display=swap">
 <link rel="stylesheet" href="assets/css/main.css">
 <link rel="stylesheet" href="assets/css/normativa.css">
 <script src="assets/js/theme.js"></script>
@@ -22,8 +22,8 @@
 <a class="skip" href="#content">Saltar al contenido</a>
 <header class="masthead" data-masthead data-active="inicio"></header>
 
-<main id="content">
-  <section class="hero">
+<main id="content" class="home">
+  <section class="hero" aria-labelledby="hero-h">
     <video class="hero-video" autoplay muted loop playsinline preload="auto" aria-hidden="true" tabindex="-1">
       <source src="assets/video/fondo.mp4" type="video/mp4">
     </video>
@@ -31,16 +31,14 @@
 
     <div class="wrap">
       <p class="eyebrow" id="edition">Edición vigente</p>
-      <h1>Normativa Oficial</h1>
-      <p class="sub" data-tagline>Reglamento y disposiciones de Vida Rol.</p>
-
-      <form class="hero-search" role="search" action="buscar.html">
-        <label class="sr-only" for="hero-q">Buscar normativa</label>
-        <input id="hero-q" type="search" name="q" placeholder="Busca una norma: MG, armas, sanciones…" autocomplete="off">
-        <button class="btn btn-primary btn-arrow" type="submit">Buscar</button>
-      </form>
+      <h1 id="hero-h">
+        <span class="ln"><span>Normativa</span></span>
+        <span class="ln"><span>Oficial</span></span>
+      </h1>
+      <p class="sub" data-tagline>El desconocimiento de la normativa no exime de su cumplimiento.</p>
 
       <div class="hero-links">
+        
         <a class="btn btn-light" href="normativa.html">Ver el índice completo</a>
       </div>
 
@@ -50,8 +48,8 @@
 
   <section class="wrap section" aria-labelledby="idx-h">
     <header class="section-head">
-      <p class="eyebrow">Índice general</p>
       <h2 id="idx-h">Normativa por categorías</h2>
+      <p>Elige una categoría para leer sus apartados y artículos.</p>
     </header>
     <ol class="cat-grid" id="home-index"><li class="loading">Cargando…</li></ol>
 
