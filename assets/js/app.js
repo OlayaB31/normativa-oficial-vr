@@ -135,7 +135,7 @@
   function applySettings(s) {
     App.settings = s || {};
     document.querySelectorAll('[data-server-name]').forEach((el) => (el.textContent = s.server_name || 'Normativa'));
-    document.querySelectorAll('[data-tagline]').forEach((el) => (el.textContent = s.tagline || 'Reglamento y disposiciones de Vida Rol.'));
+    document.querySelectorAll('[data-tagline]').forEach((el) => (el.textContent = s.tagline || 'El desconocimiento de la normativa no exime de su cumplimiento.'));
     document.querySelectorAll('[data-footer-text]').forEach((el) => (el.textContent = s.footer_text || ''));
   }
 

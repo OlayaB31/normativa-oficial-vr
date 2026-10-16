@@ -1,6 +1,6 @@
 (async () => {
   'use strict';
-  const { api, esc, fmtDate } = App;
+  const { api, esc, fmtDate, pad } = App;
   await App.ready;
 
   const index = document.getElementById('home-index');
@@ -18,8 +18,8 @@
     index.innerHTML = cats.length
       ? cats.map((c, i) => `
         <li><a class="cat-card" href="normativa.html?c=${encodeURIComponent(c.slug)}">
-          <span class="cat-top"><span class="count">${c.count} artículo${c.count === 1 ? '' : 's'}</span></span>
-          <span><h3>${esc(c.name)}</h3>${c.description ? `<p>${esc(c.description)}</p>` : ''}</span>
+          <span class="cat-top"><span class="cat-num" aria-hidden="true">${pad(i + 1)}</span><span class="count">${c.count} artículo${c.count === 1 ? '' : 's'}</span></span>
+          <span class="cat-body"><h3>${esc(c.name)}</h3>${c.description ? `<p>${esc(c.description)}</p>` : ''}</span>
           <span class="go">Ver categoría</span>
         </a></li>`).join('')
       : '<li class="empty">Todavía no hay normativa publicada.</li>';
@@ -39,7 +39,7 @@
       stats.hidden = false;
     }
     const ed = document.getElementById('edition');
-    if (ed && tree.last_update) ed.textContent = `Edición vigente  ${fmtDate(tree.last_update)}`;
+    if (ed && tree.last_update) ed.textContent = `Edición vigente, actualizada el ${fmtDate(tree.last_update)}`;
   } catch (e) {
     index.innerHTML = `<li class="empty">${esc(e.message)}</li>`;
   }

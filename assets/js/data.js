@@ -19,7 +19,7 @@ const activities = [
   { name: 'Robo a civiles',        allowed: [blanca, colt] },
   { name: 'Robo a 24/7',           allowed: [blanca, colt, micro] },
   { name: 'Venta de armas',        allowed: [blanca, colt, micro, escopeta, mp5] },
-  { name: 'Guerra de graffitis',   allowed: [blanca, colt, micro, escopeta] },
+  { name: 'Guerra de grafitis',    allowed: [blanca, colt, micro, escopeta] },
   { name: 'Guerra de pandillas',   allowed: [blanca, colt, micro, escopeta, granada, mp5] },
   { name: 'Secuestros comunes',    allowed: [blanca, colt, micro, escopeta, granada] },
   { name: 'Secuestros grandes',    allowed: [blanca, colt, micro, escopeta, fusil, granada, mp5] },
