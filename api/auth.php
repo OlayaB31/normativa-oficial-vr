@@ -1,5 +1,5 @@
 <?php
-require __DIR__ . '../config/bootstrap.php';
+require __DIR__ . '/../config/bootstrap.php';
 start_session();
 
 const MAX_ATTEMPTS = 5;
