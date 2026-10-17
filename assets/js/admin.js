@@ -136,14 +136,36 @@
     document.getElementById('u').focus();
   };
 
+  /* Cuenta hasta la cifra real; sin animación si el sistema pide reducir el movimiento */
+  const countUp = (root) => {
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    root.querySelectorAll('dd[data-n]').forEach((el) => {
+      const end = Number(el.dataset.n);
+      if (!Number.isFinite(end) || end < 2) return;
+      const t0 = performance.now();
+      const step = (t) => {
+        const p = Math.min(1, (t - t0) / 1000);
+        el.textContent = Math.round(end * (1 - Math.pow(1 - p, 3)));
+        if (p < 1) requestAnimationFrame(step);
+      };
+      el.textContent = '0';
+      requestAnimationFrame(step);
+    });
+  };
+
   Admin.dashboard = async () => {
     const s = await api('stats.php');
-    document.getElementById('figures').innerHTML = `
-      <div><dt>Artículos</dt><dd>${s.articles.total}</dd><small>${s.articles.published} publicados, ${s.articles.draft} en borrador, ${s.articles.archived} archivados</small></div>
-      <div><dt>Categorías</dt><dd>${s.categories}</dd><small>${s.sections} apartados y ${s.tags} etiquetas</small></div>
+    const a = s.articles;
+    const figures = document.getElementById('figures');
+    figures.innerHTML = `
+      <div><dt>Artículos</dt><dd data-n="${a.total}">${a.total}</dd>
+        <span class="split" role="img" aria-label="${a.published} publicados, ${a.draft} en borrador, ${a.archived} archivados"><i class="s-pub" style="flex:${a.published} 1 0"></i><i class="s-draft" style="flex:${a.draft} 1 0"></i><i class="s-arch" style="flex:${a.archived} 1 0"></i></span>
+        <small>${a.published} publicados, ${a.draft} en borrador, ${a.archived} archivados</small></div>
+      <div><dt>Categorías</dt><dd data-n="${s.categories}">${s.categories}</dd><small>${s.sections} apartados y ${s.tags} etiquetas</small></div>
       <div><dt>Última actualización</dt><dd class="date">${s.last_update ? fmtDate(s.last_update) : 'Sin datos'}</dd><small>${s.last_update ? String(s.last_update).slice(11, 16) + ' h' : ''}</small></div>`;
+    countUp(figures);
     document.getElementById('activity').innerHTML = s.activity.length
-      ? s.activity.map((a) => `<tr><td>${fmtDateTime(a.created_at)}</td><td class="ttl"><a href="normativa.html#/editar/${a.id}">${a.number ? esc(a.number) + '. ' : ''}${esc(a.title)}</a></td><td>v${a.version_no}</td><td>${esc(a.change_note || '')}</td><td>${esc(a.author || 'Sistema')}</td></tr>`).join('')
+      ? s.activity.map((a) => `<tr><td class="when">${fmtDateTime(a.created_at)}</td><td class="ttl"><a href="normativa.html#/editar/${a.id}">${a.number ? esc(a.number) + '. ' : ''}${esc(a.title)}</a></td><td class="ver">v${a.version_no}</td><td>${esc(a.change_note || '')}</td><td>${esc(a.author || 'Sistema')}</td></tr>`).join('')
       : '<tr><td colspan="5" class="empty">Aún no hay actividad.</td></tr>';
   };
 

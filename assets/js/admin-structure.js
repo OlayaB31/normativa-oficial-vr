@@ -15,9 +15,13 @@
 
   const children = (catId, parentId) => secs.filter((s) => +s.category_id === +catId && (s.parent_id === null ? null : +s.parent_id) === parentId);
 
+  const ARROW = (d) => `<svg viewBox="0 0 16 16" aria-hidden="true"><path d="${d}"/></svg>`;
+  const UP = ARROW('m4 10 4-4 4 4');
+  const DOWN = ARROW('m4 6 4 4 4-4');
+
   function ctl(type, id, extra = '') {
     return `<span class="ctl" data-type="${type}" data-id="${id}">
-      <button class="btn btn-sm" data-act="up" aria-label="Subir">Subir</button><button class="btn btn-sm" data-act="down" aria-label="Bajar">Bajar</button>
+      <button class="btn btn-sm ico" data-act="up" aria-label="Subir" title="Subir">${UP}</button><button class="btn btn-sm ico" data-act="down" aria-label="Bajar" title="Bajar">${DOWN}</button>
       ${extra}<button class="btn btn-sm" data-act="edit">Editar</button><button class="btn btn-sm btn-danger" data-act="del">Eliminar</button></span>`;
   }
 

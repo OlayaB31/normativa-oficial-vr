@@ -178,7 +178,7 @@
     const cats = st.tree.categories;
     const total = st.tree.total_articles;
     main.innerHTML = `${crumbs([])}<div class="view"><header class="view-head ov-head"><h1>Normativa</h1>
-      <p class="lede">${cats.length ? `Reúne <b>${total}</b> artículo${total === 1 ? '' : 's'} en <b>${cats.length}</b> categoría${cats.length === 1 ? '' : 's'}. Cada uno indica si está vigente y cuándo se actualizó por última vez (${esc(fmtDate(st.tree.last_update))}).` : 'Todavía no hay normativa publicada.'}</p></header>
+      <p class="lede">${cats.length ? `Reúne <b>${total}</b> artículo${total === 1 ? '' : 's'} en <b>${cats.length}</b> categoría${cats.length === 1 ? '' : 's'}.` : 'Todavía no hay normativa publicada.'}</p></header>
       ${cats.length ? `<ol class="codex">${cats.map(codexRow).join('')}</ol>` : ''}</div>`;
     rail.innerHTML = `<h2>Documento</h2><dl class="facts"><dt>Categorías</dt><dd>${cats.length}</dd><dt>Artículos</dt><dd>${total}</dd><dt>Actualizada</dt><dd>${fmtDate(st.tree.last_update)}</dd></dl>${railActions()}
       <h2>Atajos</h2><ul class="keys-hint"><li><kbd>/</kbd> Buscar en el índice</li><li><kbd>i</kbd> Abrir el índice</li><li><kbd>n</kbd><kbd>p</kbd> Siguiente y anterior</li></ul>`;
