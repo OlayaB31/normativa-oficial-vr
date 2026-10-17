@@ -8,7 +8,7 @@
 <link rel="icon" href="../assets/img/logo-vr.gif" type="image/gif">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&amp;family=Inter+Tight:wght@400;500&amp;family=Inter:wght@400;500;600;700&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&amp;family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600;700&amp;family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&amp;display=swap">
 <link rel="stylesheet" href="../assets/css/main.css">
 <link rel="stylesheet" href="../assets/css/normativa.css">
 <link rel="stylesheet" href="../assets/css/admin.css">
@@ -17,21 +17,31 @@
 <body>
 <header data-adminbar></header>
 <main class="admin-main admin-narrow">
-  <div class="page-head"><div><h1>Configuración</h1></div></div>
-  <form id="settings-form" novalidate>
-    <h2 class="sec-h">Datos del servidor</h2>
-    <label class="fld" for="server_name">Nombre del servidor<input id="server_name" name="server_name" type="text" maxlength="80"></label>
-    <label class="fld" for="tagline">Subtítulo<input id="tagline" name="tagline" type="text" maxlength="200"></label>
-    <label class="fld" for="description">Descripción para buscadores<textarea id="description" name="description" maxlength="300"></textarea></label>
-    <label class="fld" for="footer_text">Texto del pie de página<textarea id="footer_text" name="footer_text" maxlength="300"></textarea></label>
-    <button class="btn btn-primary" type="submit">Guardar configuración</button>
+  <div class="page-head"><div><h1>Configuración</h1><p class="hint">Ajustes generales del sitio y de tu cuenta.</p></div></div>
+  <form id="settings-form" class="set" novalidate>
+    <div class="set-intro">
+      <h2 class="sec-h">Datos del servidor</h2>
+      <p class="hint">Aparecen en la portada, en el pie de página y en los resultados de los buscadores.</p>
+    </div>
+    <div class="set-body">
+      <label class="fld" for="server_name">Nombre del servidor<input id="server_name" name="server_name" type="text" maxlength="80"></label>
+      <label class="fld" for="tagline">Subtítulo<input id="tagline" name="tagline" type="text" maxlength="200"></label>
+      <label class="fld" for="description">Descripción para buscadores<textarea id="description" name="description" maxlength="300"></textarea></label>
+      <label class="fld" for="footer_text">Texto del pie de página<textarea id="footer_text" name="footer_text" maxlength="300"></textarea></label>
+      <div class="set-actions"><button class="btn btn-primary" type="submit">Guardar configuración</button></div>
+    </div>
   </form>
-  <form id="password-form" class="form-block" novalidate>
-    <h2 class="sec-h">Cambiar mi contraseña</h2>
-    <label class="fld" for="current">Contraseña actual<input id="current" name="current" type="password" autocomplete="current-password"></label>
-    <label class="fld" for="new">Contraseña nueva<input id="new" name="new" type="password" autocomplete="new-password"><small>Mínimo 10 caracteres.</small></label>
-    <label class="fld" for="repeat">Repite la contraseña nueva<input id="repeat" name="repeat" type="password" autocomplete="new-password"></label>
-    <button class="btn" type="submit">Actualizar contraseña</button>
+  <form id="password-form" class="set form-block" novalidate>
+    <div class="set-intro">
+      <h2 class="sec-h">Cambiar mi contraseña</h2>
+      <p class="hint">Usa al menos 10 caracteres y no la repitas en otros sitios.</p>
+    </div>
+    <div class="set-body">
+      <label class="fld" for="current">Contraseña actual<input id="current" name="current" type="password" autocomplete="current-password"></label>
+      <label class="fld" for="new">Contraseña nueva<input id="new" name="new" type="password" autocomplete="new-password"><small>Mínimo 10 caracteres.</small></label>
+      <label class="fld" for="repeat">Repite la contraseña nueva<input id="repeat" name="repeat" type="password" autocomplete="new-password"></label>
+      <div class="set-actions"><button class="btn" type="submit">Actualizar contraseña</button></div>
+    </div>
   </form>
 </main>
 <script src="../assets/js/app.js"></script>
